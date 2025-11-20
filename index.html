@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Empty Fry Box Playbook</title>
+  <title>The FOMO Machine</title>
 
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- KW logo as favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/png" href="kw-logo.png" />
 
+  <!-- Inter font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -22,6 +23,10 @@
     body {
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
         "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(248, 113, 113, 0.16), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(239, 68, 68, 0.12), transparent 50%),
+        radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.9), #020617);
     }
 
     /* NAV LINKS */
@@ -30,19 +35,21 @@
       border-radius: 0.375rem;
       font-size: 0.875rem;
       font-weight: 500;
-      color: #d1d5db; /* gray-300 */
+      color: #d1d5db;
       cursor: pointer;
-      transition: background-color 0.15s ease, color 0.15s ease;
+      transition: background-color 0.15s ease, color 0.15s ease,
+        box-shadow 0.15s ease;
     }
     .nav-link:hover {
-      background-color: rgba(127, 29, 29, 0.3); /* red-800/30 */
-      color: #ef4444; /* red-500 */
+      background-color: rgba(127, 29, 29, 0.5);
+      color: #f97373;
+      box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.6);
     }
     .nav-link.active {
-      background-color: #dc2626; /* red-600 */
+      background: linear-gradient(to right, #dc2626, #b91c1c);
       color: #ffffff;
       font-weight: 700;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 30px -10px rgba(220, 38, 38, 0.8);
     }
 
     /* PLAYBOOK TABS */
@@ -51,21 +58,21 @@
       border-radius: 0.75rem 0.75rem 0 0;
       font-size: 0.875rem;
       font-weight: 500;
-      color: #9ca3af; /* gray-400 */
+      color: #9ca3af;
       border-bottom: 2px solid transparent;
       cursor: pointer;
       transition: background-color 0.15s ease, color 0.15s ease,
         border-color 0.15s ease;
     }
     .tab-link:hover {
-      background-color: #404040; /* neutral-700 */
+      background-color: #404040;
       color: #ffffff;
     }
     .tab-link.active {
-      border-color: #dc2626; /* red-600 */
-      color: #ef4444; /* red-500 */
+      border-color: #dc2626;
+      color: #f97373;
       font-weight: 700;
-      background-color: #262626; /* neutral-800 */
+      background-color: #262626;
     }
 
     /* TACTIC FILTER BUTTONS */
@@ -74,35 +81,48 @@
       border-radius: 9999px;
       font-size: 1rem;
       font-weight: 500;
-      color: #d1d5db; /* gray-300 */
-      background-color: #262626; /* neutral-800 */
-      border: 1px solid #404040; /* neutral-700 */
+      color: #d1d5db;
+      background-color: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.6);
       cursor: pointer;
       transition: background-color 0.15s ease, color 0.15s ease,
-        border-color 0.15s ease, box-shadow 0.15s ease;
+        border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+      backdrop-filter: blur(18px);
     }
     .tactic-button:hover {
-      background-color: #404040; /* neutral-700 */
+      background-color: rgba(31, 41, 55, 0.9);
+      transform: translateY(-1px);
     }
     .tactic-button.active {
-      background-color: #dc2626; /* red-600 */
+      background: radial-gradient(circle at 0% 0%, #ef4444, #b91c1c);
       color: #ffffff;
-      border-color: #dc2626;
-      box-shadow: 0 10px 25px -5px rgba(127, 29, 29, 0.8);
+      border-color: #f97373;
+      box-shadow: 0 18px 35px -18px rgba(248, 113, 113, 0.9);
     }
 
-    /* GENERIC CARD */
-    .card {
-      background-color: #262626; /* neutral-800 */
-      border-radius: 0.75rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
-      overflow: hidden;
-      border: 1px solid #404040; /* neutral-700 */
+    /* GLASS CARD */
+    .glass-card {
+      background: linear-gradient(
+          135deg,
+          rgba(15, 23, 42, 0.95),
+          rgba(15, 23, 42, 0.9)
+        );
+      border-radius: 0.9rem;
+      box-shadow:
+        0 24px 60px -30px rgba(15, 23, 42, 0.9),
+        0 0 0 1px rgba(148, 163, 184, 0.25);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(18px);
     }
     .card-header {
       padding: 1.25rem;
-      background-color: rgba(0, 0, 0, 0.4);
-      border-bottom: 1px solid #404040;
+      border-bottom: 1px solid rgba(51, 65, 85, 0.9);
+      background: radial-gradient(
+          circle at 0% 0%,
+          rgba(248, 113, 113, 0.18),
+          transparent 55%
+        ),
+        rgba(15, 23, 42, 0.9);
     }
     .card-content {
       padding: 1.5rem;
@@ -117,21 +137,21 @@
     }
     .timeline-step {
       flex: 1 1 0;
-      background-color: #262626;
+      background-color: rgba(15, 23, 42, 0.9);
       padding: 1.25rem;
-      border-radius: 0.5rem;
+      border-radius: 0.75rem;
       border-left-width: 4px;
       border-left-style: solid;
-      border-left-color: #4b5563; /* gray-600 */
-      color: #e5e7eb; /* gray-200 */
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+      border-left-color: #4b5563;
+      color: #e5e7eb;
+      box-shadow: 0 10px 25px -20px rgba(15, 23, 42, 0.9);
     }
     .timeline-step-arrow {
       display: none;
       align-items: center;
       justify-content: center;
       font-size: 1.875rem;
-      color: #4b5563;
+      color: #64748b;
     }
     @media (min-width: 768px) {
       .timeline {
@@ -149,75 +169,85 @@
     textarea,
     select {
       width: 100%;
-      padding: 0.5rem 0.75rem;
-      background-color: #404040; /* neutral-700 */
-      border-radius: 0.375rem;
-      border: 1px solid #525252; /* neutral-600 */
-      color: #ffffff;
-      font-size: 0.875rem;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      padding: 0.55rem 0.8rem;
+      background-color: rgba(15, 23, 42, 0.95);
+      border-radius: 0.5rem;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
     }
     input::placeholder,
     textarea::placeholder {
-      color: #9ca3af; /* gray-400 */
+      color: #6b7280;
     }
     input:focus,
     textarea:focus,
     select:focus {
       outline: none;
-      border-color: #ef4444; /* red-500 */
-      box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.6);
+      border-color: #f97373;
+      box-shadow:
+        0 0 0 1px rgba(248, 113, 113, 0.75),
+        0 0 40px -25px rgba(248, 113, 113, 0.9);
     }
 
     /* BUTTONS */
     .btn-primary {
-      padding: 0.75rem 1.25rem;
-      background-color: #dc2626; /* red-600 */
+      padding: 0.85rem 1.25rem;
+      background: linear-gradient(to right, #ef4444, #b91c1c);
       color: #ffffff;
-      border-radius: 0.375rem;
-      font-weight: 700;
-      box-shadow: 0 10px 25px -5px rgba(127, 29, 29, 0.9);
+      border-radius: 0.6rem;
+      font-weight: 800;
+      letter-spacing: 0.07em;
+      box-shadow:
+        0 18px 50px -20px rgba(248, 113, 113, 0.9),
+        0 0 0 1px rgba(248, 250, 252, 0.05);
       cursor: pointer;
+      text-transform: uppercase;
       transition: background-color 0.15s ease, transform 0.15s ease,
         box-shadow 0.15s ease;
     }
     .btn-primary:hover {
-      background-color: #b91c1c; /* red-700 */
-      transform: translateY(-2px);
+      background: linear-gradient(to right, #f97373, #dc2626);
+      transform: translateY(-1.5px);
+      box-shadow:
+        0 20px 55px -18px rgba(248, 113, 113, 0.95),
+        0 0 0 1px rgba(248, 250, 252, 0.08);
     }
     .btn-secondary {
-      padding: 0.5rem 1.25rem;
-      background-color: #525252; /* neutral-600 */
-      color: #ffffff;
-      border-radius: 0.375rem;
+      padding: 0.65rem 1.35rem;
+      background-color: rgba(31, 41, 55, 0.95);
+      color: #e5e7eb;
+      border-radius: 0.5rem;
       font-weight: 600;
       cursor: pointer;
-      transition: background-color 0.15s ease;
+      transition: background-color 0.15s ease, box-shadow 0.15s ease;
     }
     .btn-secondary:hover {
-      background-color: #737373; /* neutral-500 */
+      background-color: rgba(55, 65, 81, 0.95);
+      box-shadow: 0 14px 30px -18px rgba(15, 23, 42, 0.9);
     }
 
-    /* GENERATED REPORT (LIGHT FOR PRINTING) */
+    /* GENERATED REPORT (LIGHT FOR PRINT) */
     .generated-report {
       position: relative;
       background-color: #ffffff;
       color: #111827;
-      border-radius: 0.75rem;
+      border-radius: 0.9rem;
       padding: 2rem;
       border: 1px solid #e5e7eb;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 24px 60px -30px rgba(15, 23, 42, 0.9);
     }
 
-    /* DARK MODE SCROLLBAR */
+    /* Scrollbar */
     ::-webkit-scrollbar {
       width: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #171717;
+      background: #020617;
     }
     ::-webkit-scrollbar-thumb {
-      background: #404040;
+      background: #4b5563;
       border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
@@ -226,10 +256,10 @@
   </style>
 </head>
 
-<body class="bg-neutral-900 text-gray-100 selection:bg-red-600 selection:text-white">
+<body class="text-gray-100 selection:bg-red-600 selection:text-white">
   <!-- HEADER -->
   <header
-    class="bg-black border-b border-neutral-800 sticky top-0 z-50 shadow-lg shadow-black/50"
+    class="bg-black/90 backdrop-blur border-b border-neutral-800 sticky top-0 z-50 shadow-lg shadow-black"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
@@ -237,19 +267,24 @@
           <img
             src="kw-logo.png"
             alt="Keller Williams"
-            class="h-8 w-auto object-contain"
+            class="h-8 w-auto object-contain drop-shadow-[0_0_15px_rgba(248,113,113,0.75)]"
           />
-          <h1 class="text-xl font-black text-white tracking-wide uppercase">
-            Fry Box <span class="text-red-600">Playbook</span>
-          </h1>
+          <div>
+            <p class="text-[0.7rem] uppercase tracking-[0.25em] text-gray-400">
+              KW Explore • Market Engine
+            </p>
+            <h1 class="text-xl font-black text-white tracking-wide uppercase">
+              The <span class="text-red-500">FOMO Machine</span>
+            </h1>
+          </div>
         </div>
 
         <nav class="hidden md:block">
           <div id="main-nav" class="ml-10 flex items-baseline space-x-2">
             <a class="nav-link active" data-target="home-section">Home</a>
-            <a class="nav-link" data-target="playbook-section">The Playbook</a>
-            <a class="nav-link" data-target="tactics-section">Dynamic Tactics</a>
-            <a class="nav-link" data-target="generator-section">Strategy Gen</a>
+            <a class="nav-link" data-target="playbook-section">Playbook</a>
+            <a class="nav-link" data-target="tactics-section">Tactics</a>
+            <a class="nav-link" data-target="generator-section">Market Engine</a>
             <a class="nav-link" data-target="leadgen-section">Lead Gen</a>
             <a class="nav-link" data-target="implementation-section"
               >Implementation</a
@@ -285,13 +320,15 @@
     <!-- MOBILE NAV -->
     <div
       id="mobile-menu"
-      class="md:hidden hidden bg-neutral-900 border-b border-neutral-800"
+      class="md:hidden hidden bg-neutral-950/95 border-b border-neutral-800"
     >
       <div id="mobile-nav" class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
         <a class="block nav-link active" data-target="home-section">Home</a>
-        <a class="block nav-link" data-target="playbook-section">The Playbook</a>
-        <a class="block nav-link" data-target="tactics-section">Dynamic Tactics</a>
-        <a class="block nav-link" data-target="generator-section">Strategy Gen</a>
+        <a class="block nav-link" data-target="playbook-section">Playbook</a>
+        <a class="block nav-link" data-target="tactics-section">Tactics</a>
+        <a class="block nav-link" data-target="generator-section"
+          >Market Engine</a
+        >
         <a class="block nav-link" data-target="leadgen-section">Lead Gen</a>
         <a class="block nav-link" data-target="implementation-section"
           >Implementation</a
@@ -305,51 +342,61 @@
     <!-- HOME -->
     <section id="home-section" class="app-section">
       <div class="text-center mb-12">
-        <h2 class="text-5xl font-black text-white tracking-tight uppercase mb-4">
-          The "<span class="text-red-600">Empty Fry Box</span>" Playbook
+        <p class="text-xs tracking-[0.35em] uppercase text-gray-400 mb-3">
+          Market of the Moment • Listing Launch OS
+        </p>
+        <h2
+          class="text-5xl md:text-6xl font-black text-white tracking-tight uppercase mb-4"
+        >
+          The <span class="text-red-500">FOMO Machine</span>
         </h2>
-        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
-          Strategic real estate systems for the modern agent.<br />
-          <span class="text-red-500 font-semibold">WIN</span> listings.
-          <span class="text-red-500 font-semibold">PRICE</span> correctly.
-          <span class="text-red-500 font-semibold">CREATE</span> urgency.
+        <p class="mt-4 max-w-3xl mx-auto text-lg md:text-xl text-gray-300">
+          Turn raw suburb stats into a simple call:
+          <span class="font-semibold text-red-400">Seller’s</span>,
+          <span class="font-semibold text-sky-300">Balanced</span> or
+          <span class="font-semibold text-emerald-300">Buyer’s</span> market –
+          then launch a campaign that makes buyers feel they can’t afford to
+          wait.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
         <!-- Core principle -->
-        <div class="card border-l-4 border-l-red-600">
+        <div class="glass-card border-l-4 border-l-red-500">
           <div class="card-content space-y-4">
-            <h3 class="text-2xl font-bold text-white">The Core Principle</h3>
+            <h3 class="text-2xl font-bold text-white">
+              The Empty Fry Box Principle
+            </h3>
             <p class="text-gray-300">
-              Buyers don’t respond to how much stock is actually in the box –
-              they respond to how much feels like is
-              <strong class="text-white">left</strong>. Your listings work the
-              same way.
+              Fast-food brands learned that demand doesn’t come from how many
+              fries are in the box – it comes from how many fries it looks like
+              are <span class="font-semibold text-white">left</span>.
             </p>
-            <ul class="space-y-3 text-gray-400">
-              <li class="flex items-center">
-                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
+            <ul class="space-y-3 text-gray-300">
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-red-500"></span>
                 <span><strong class="text-white">Too empty:</strong> feels desperate.</span>
               </li>
-              <li class="flex items-center">
-                <span class="w-2 h-2 bg-gray-600 rounded-full mr-3"></span>
-                <span><strong class="text-white">Overflowing:</strong> no urgency.</span>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-gray-500"></span>
+                <span><strong class="text-white">Overflowing:</strong> zero urgency.</span>
               </li>
-              <li class="flex items-center">
-                <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+              <li class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
                 <span
                   ><strong class="text-white">Almost not enough:</strong> healthy
                   pressure, stronger offers.</span
                 >
               </li>
             </ul>
-            <div class="mt-4 p-4 bg-black/30 rounded border border-neutral-700">
-              <p class="text-gray-300 italic">
-                “We design price, access and information so serious buyers feel:
-                <span class="text-red-500 font-semibold"
-                  >‘If I wait, I might lose this.’</span
-                >”
+            <div
+              class="mt-4 p-4 rounded-xl border border-red-500/60 bg-gradient-to-r from-black via-black to-red-900/40"
+            >
+              <p class="text-gray-100 text-sm md:text-base italic">
+                “The FOMO Machine combines that fry-box psychology with suburb
+                stats so your launch feels like
+                <span class="text-red-400 font-semibold">‘last chance’</span> –
+                not <span class="text-gray-300">‘we’ve been sitting’</span>.”
               </p>
             </div>
           </div>
@@ -358,35 +405,42 @@
         <!-- Pillars -->
         <div class="space-y-6 flex flex-col justify-center">
           <div class="space-y-4">
-            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
-              <h4 class="text-xl font-bold text-white">Micro-Dominance</h4>
-              <p class="text-gray-400">
-                Own a few streets, not the whole city. Specialists win.
+            <div
+              class="glass-card border border-slate-600/60 px-5 py-4 flex flex-col gap-1"
+            >
+              <p class="text-[0.7rem] tracking-[0.25em] uppercase text-gray-400">
+                Pillar 1
+              </p>
+              <h4 class="text-xl font-bold text-white">Micro-Market Mastery</h4>
+              <p class="text-gray-300 text-sm">
+                You don’t “work Johannesburg”. You own a handful of streets and
+                price bands – and know them cold.
               </p>
             </div>
-            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
-              <h4 class="text-xl font-bold text-white">Accuracy</h4>
-              <p class="text-gray-400">
-                Price inside the correct search brackets, not at random numbers.
+            <div
+              class="glass-card border border-slate-600/60 px-5 py-4 flex flex-col gap-1"
+            >
+              <p class="text-[0.7rem] tracking-[0.25em] uppercase text-gray-400">
+                Pillar 2
+              </p>
+              <h4 class="text-xl font-bold text-white">Data-Led Accuracy</h4>
+              <p class="text-gray-300 text-sm">
+                Number of sales, R/m², median price and days on market feed into
+                one simple call: seller’s, balanced or buyer’s market.
               </p>
             </div>
-            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
-              <h4 class="text-xl font-bold text-white">Velocity</h4>
-              <p class="text-gray-400">
-                Short, intense campaigns beat slow, noisy ones every time.
+            <div
+              class="glass-card border border-slate-600/60 px-5 py-4 flex flex-col gap-1"
+            >
+              <p class="text-[0.7rem] tracking-[0.25em] uppercase text-gray-400">
+                Pillar 3
+              </p>
+              <h4 class="text-xl font-bold text-white">Engineered FOMO</h4>
+              <p class="text-gray-300 text-sm">
+                Price brackets, viewing windows and messaging are all tuned to
+                your market type so buyers feel the pressure – not the seller.
               </p>
             </div>
-          </div>
-          <div class="p-6 bg-red-700 text-white rounded-lg border border-red-500 text-center">
-            <h4 class="text-xl font-black uppercase tracking-wider mb-2">
-              The Formula
-            </h4>
-            <p class="text-lg font-medium text-red-50">
-              Correct Price + Controlled Access + Phased Marketing =
-              <span class="font-bold text-white text-2xl block mt-2">
-                Perceived Scarcity &amp; Stronger Offers
-              </span>
-            </p>
           </div>
         </div>
       </div>
@@ -395,11 +449,15 @@
     <!-- PLAYBOOK -->
     <section id="playbook-section" class="app-section hidden">
       <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-3">
+          Strategic Modules
+        </p>
         <h2 class="text-4xl font-black text-white tracking-tight uppercase">
-          The Core Playbook
+          The FOMO Playbook
         </h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
-          Four modules to run the Empty Fry Box system.
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
+          Four modules that turn generic listings into scarcity-driven
+          campaigns.
         </p>
       </div>
 
@@ -426,40 +484,41 @@
             Module 1: Reading the Market
           </h3>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div class="card border-t-4 border-t-red-600">
+            <div class="glass-card border-l-4 border-l-red-500">
               <div class="card-header">
-                <h4 class="text-2xl font-bold text-red-500">
+                <h4 class="text-2xl font-bold text-red-400">
                   Hot Seller Market
                 </h4>
               </div>
-              <div class="card-content text-gray-300 space-y-2">
-                <p><strong>Signs:</strong> Low stock, quick sales.</p>
-                <p><strong>Move:</strong> Manage traffic and set deadlines.</p>
+              <div class="card-content text-gray-200 space-y-2 text-sm">
+                <p><strong>Signs:</strong> Low stock, DOM compressing.</p>
+                <p><strong>Impact:</strong> Under-pricing costs the seller.</p>
               </div>
             </div>
 
-            <div class="card border-t-4 border-t-blue-500">
+            <div class="glass-card border-l-4 border-l-sky-500">
               <div class="card-header">
-                <h4 class="text-2xl font-bold text-blue-400">
+                <h4 class="text-2xl font-bold text-sky-300">
                   Balanced Market
                 </h4>
               </div>
-              <div class="card-content text-gray-300 space-y-2">
-                <p><strong>Signs:</strong> Average DOM, value sensitive.</p>
-                <p><strong>Move:</strong> Be Top 3 value and Top 3 photos.</p>
+              <div class="card-content text-gray-200 space-y-2 text-sm">
+                <p><strong>Signs:</strong> Average DOM &amp; steady sales.</p>
+                <p><strong>Impact:</strong> Top 3 value wins, rest sit.</p>
               </div>
             </div>
 
-            <div class="card border-t-4 border-t-gray-400">
+            <div class="glass-card border-l-4 border-l-emerald-400">
               <div class="card-header">
-                <h4 class="text-2xl font-bold text-gray-300">
-                  Cool Buyer Market
+                <h4 class="text-2xl font-bold text-emerald-300">
+                  Buyer’s Market
                 </h4>
               </div>
-              <div class="card-content text-gray-300 space-y-2">
-                <p><strong>Signs:</strong> High stock, price cuts.</p>
+              <div class="card-content text-gray-200 space-y-2 text-sm">
+                <p><strong>Signs:</strong> High DOM, price drops.</p>
                 <p>
-                  <strong>Move:</strong> Either be the bargain or the rare find.
+                  <strong>Impact:</strong> You must be the
+                  “bargain” or the “rare find”.
                 </p>
               </div>
             </div>
@@ -472,45 +531,46 @@
             Module 2: Own Your Micro-Areas
           </h3>
           <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div class="card">
+            <div class="glass-card">
               <div class="card-header">
-                <h4 class="text-2xl font-bold text-red-500">
+                <h4 class="text-2xl font-bold text-red-400">
                   The Selection Matrix
                 </h4>
               </div>
-              <div class="card-content text-gray-300 space-y-3">
-                <p>Select 1–3 lanes to dominate:</p>
+              <div class="card-content text-gray-200 space-y-3 text-sm">
+                <p>Lock in 1–3 lanes you will dominate:</p>
                 <p
-                  class="text-center font-mono text-white text-lg p-3 bg-black rounded border border-neutral-700"
+                  class="text-center font-mono text-white text-lg p-3 rounded-lg bg-black/70 border border-slate-600"
                 >
-                  [Suburb] + [Type] + [Price]
+                  [Suburb] + [Type] + [Price Band]
                 </p>
                 <p>
-                  <span class="text-red-500 font-semibold">Weak:</span> “I sell
-                  everywhere.”
+                  <span class="text-red-400 font-semibold">Weak:</span> “I sell
+                  everywhere in Sandton.”
                 </p>
                 <p>
-                  <span class="text-green-400 font-semibold">Strong:</span> “I
+                  <span class="text-emerald-300 font-semibold">Strong:</span> “I
                   specialise in full-title homes in Lonehill between R2.5m and
                   R3.5m.”
                 </p>
               </div>
             </div>
 
-            <div class="card">
+            <div class="glass-card">
               <div class="card-header">
-                <h4 class="text-2xl font-bold text-red-500">
+                <h4 class="text-2xl font-bold text-red-400">
                   Positioning Script
                 </h4>
               </div>
-              <div class="card-content text-gray-300 space-y-3">
+              <div class="card-content text-gray-200 space-y-3 text-sm">
                 <p>When asked “Why you?”:</p>
                 <blockquote
-                  class="p-4 bg-neutral-900 border-l-4 border-red-600 rounded-r-lg italic text-gray-100"
+                  class="p-4 bg-black/70 border-l-4 border-red-500 rounded-r-lg italic text-gray-100"
                 >
                   “I’m the specialist for this pocket. I track the real numbers,
-                  price you to beat your competition and run structured
-                  campaigns that create demand instead of desperation.”
+                  price you against today’s competition, and run a launch plan
+                  that creates fear of missing out – not months of price
+                  reductions.”
                 </blockquote>
               </div>
             </div>
@@ -520,47 +580,47 @@
         <!-- TAB 3 -->
         <div id="playbook-tab-3" class="playbook-tab hidden">
           <h3 class="text-3xl font-bold text-white mb-6 text-center">
-            Module 3: Pricing for Scarcity
+            Module 3: Pricing for FOMO
           </h3>
           <div class="space-y-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="card">
+              <div class="glass-card">
                 <div class="card-header">
-                  <h4 class="text-2xl font-bold text-red-500">
+                  <h4 class="text-2xl font-bold text-red-400">
                     Search Bracket Rule
                   </h4>
                 </div>
-                <div class="card-content text-gray-300 space-y-2">
-                  <p>Buyers search in logical brackets (R2–R2.5m etc.).</p>
+                <div class="card-content text-gray-200 space-y-2 text-sm">
+                  <p>Buyers search in brackets (R2m–R2.5m etc.).</p>
                   <p>
-                    <span class="text-red-500 font-semibold">Wrong:</span>
-                    R2,050,000 – invisible in most searches.
+                    <span class="text-red-400 font-semibold">Wrong:</span>
+                    R2,050,000 – hidden in most searches.
                   </p>
                   <p>
-                    <span class="text-green-400 font-semibold">Right:</span>
-                    R1,995,000 – more eyeballs, looks like value.
+                    <span class="text-emerald-300 font-semibold">Right:</span>
+                    R1,995,000 – more eyeballs, powerful first weekend.
                   </p>
                 </div>
               </div>
 
-              <div class="card">
+              <div class="glass-card">
                 <div class="card-header">
-                  <h4 class="text-2xl font-bold text-red-500">
+                  <h4 class="text-2xl font-bold text-red-400">
                     Top 3 Value Test
                   </h4>
                 </div>
-                <div class="card-content text-gray-300 space-y-2">
+                <div class="card-content text-gray-200 space-y-2 text-sm">
                   <p class="italic text-white">
-                    “If I were a serious buyer with cash, would this home be in
-                    my Top 3 to view this weekend?”
+                    “If I were a serious buyer with cash, would this be in my
+                    Top 3 to view this weekend?”
                   </p>
                   <p>
-                    <span class="text-green-400 font-semibold">Yes:</span> launch
-                    hard.
+                    <span class="text-emerald-300 font-semibold">Yes:</span>
+                    launch hard.
                   </p>
                   <p>
-                    <span class="text-red-500 font-semibold">No:</span> fix
-                    price or condition first.
+                    <span class="text-red-400 font-semibold">No:</span> fix
+                    price or condition before you go live.
                   </p>
                 </div>
               </div>
@@ -573,26 +633,26 @@
               <div class="timeline">
                 <div class="timeline-step border-white">
                   <h5 class="font-bold text-lg text-white">Days 1–7: Launch</h5>
-                  <p class="text-sm text-gray-400">
+                  <p class="text-sm text-gray-300">
                     Max exposure. Track enquiries vs viewings.
                   </p>
                 </div>
                 <div class="timeline-step-arrow">→</div>
-                <div class="timeline-step border-red-500 bg-red-900/20">
-                  <h5 class="font-bold text-lg text-red-400">
+                <div class="timeline-step border-red-400 bg-red-900/30">
+                  <h5 class="font-bold text-lg text-red-300">
                     Days 8–14: Feedback
                   </h5>
-                  <p class="text-sm text-gray-400">
+                  <p class="text-sm text-gray-300">
                     No second viewings or offers = market rejection.
                   </p>
                 </div>
                 <div class="timeline-step-arrow">→</div>
-                <div class="timeline-step border-red-600 bg-red-900/40">
-                  <h5 class="font-bold text-lg text-red-500">
+                <div class="timeline-step border-red-600 bg-red-950/40">
+                  <h5 class="font-bold text-lg text-red-400">
                     Days 15–21: Adjustment
                   </h5>
-                  <p class="text-sm text-gray-400">
-                    Don’t drift. Adjust strategy before the listing goes stale.
+                  <p class="text-sm text-gray-300">
+                    Don’t drift. Adjust before the listing becomes “old news”.
                   </p>
                 </div>
               </div>
@@ -606,24 +666,30 @@
             Module 4: Campaign Structure
           </h3>
           <div class="timeline">
-            <div class="timeline-step border-gray-500">
-              <h5 class="font-bold text-lg text-white">Phase 1: Pre-Launch</h5>
-              <p class="text-sm text-gray-400">
-                Prime your buyer list. Offer early viewing slots.
+            <div class="timeline-step border-sky-400">
+              <h5 class="font-bold text-lg text-white">
+                Phase 1: Pre-Launch
+              </h5>
+              <p class="text-sm text-gray-300">
+                Prime your buyer list, social channels and neighbours before a
+                single portal view.
               </p>
             </div>
             <div class="timeline-step-arrow">→</div>
             <div class="timeline-step border-red-500">
-              <h5 class="font-bold text-lg text-red-400">Phase 2: Launch</h5>
-              <p class="text-sm text-gray-400">
-                High-impact photos, strict viewing windows, clear call-to-action.
+              <h5 class="font-bold text-lg text-red-300">Phase 2: Launch</h5>
+              <p class="text-sm text-gray-300">
+                High-impact photos, tight viewing windows and clear deadlines.
               </p>
             </div>
             <div class="timeline-step-arrow">→</div>
-            <div class="timeline-step border-white">
-              <h5 class="font-bold text-lg text-white">Phase 3: Adjust</h5>
-              <p class="text-sm text-gray-400">
-                If strong, set deadlines. If weak, adjust by day 21.
+            <div class="timeline-step border-emerald-400">
+              <h5 class="font-bold text-lg text-emerald-300">
+                Phase 3: Adjust &amp; Leverage
+              </h5>
+              <p class="text-sm text-gray-300">
+                If strong, set offer cut-off times. If soft, adjust pricing and
+                relaunch with new hooks.
               </p>
             </div>
           </div>
@@ -634,24 +700,28 @@
     <!-- TACTICS -->
     <section id="tactics-section" class="app-section hidden">
       <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-3">
+          Play the Market You’re In
+        </p>
         <h2 class="text-4xl font-black text-white tracking-tight uppercase">
           Dynamic Tactics
         </h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
-          Select the current temperature of your market to see the right moves.
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
+          Once the FOMO Machine has called your market, plug into the matching
+          playbook below.
         </p>
       </div>
 
       <!-- Filter buttons -->
       <div id="tactic-filter" class="flex justify-center flex-wrap gap-4 mb-10">
         <button class="tactic-button active" data-target="tactic-hot">
-          🔥 Hot Market
+          🔥 Seller’s Market
         </button>
         <button class="tactic-button" data-target="tactic-balanced">
           ⚖️ Balanced Market
         </button>
         <button class="tactic-button" data-target="tactic-cool">
-          ❄️ Cool Market
+          ❄️ Buyer’s Market
         </button>
       </div>
 
@@ -659,43 +729,45 @@
       <div class="max-w-4xl mx-auto">
         <!-- HOT -->
         <div id="tactic-hot" class="tactic-pane space-y-6">
-          <div class="card border-l-4 border-l-red-600">
+          <div class="glass-card border-l-4 border-l-red-500">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-red-500">
-                Hot Market Tactics
+              <h3 class="text-2xl font-bold text-red-300">
+                Seller’s Market Tactics
               </h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
+            <div class="card-content text-gray-200 space-y-3 text-sm">
               <p>
-                <span class="text-white font-semibold">Goal:</span> Harness
-                demand without underselling.
+                <span class="font-semibold text-white">Goal:</span> Protect
+                price while harnessing demand.
               </p>
               <p>
-                <span class="text-white font-semibold">Access:</span> Tight
-                viewing windows, group buyers together.
+                <span class="font-semibold text-white">Access:</span> One or two
+                tight viewing windows so buyers feel the crowd.
               </p>
               <p>
-                <span class="text-white font-semibold">Photos:</span> High
-                impact, not too many – create curiosity.
+                <span class="font-semibold text-white">Photos:</span> 8–12
+                hero-level images that prove value but don’t tell the full
+                story.
               </p>
             </div>
           </div>
-          <div class="card">
+          <div class="glass-card">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+              <h3 class="text-2xl font-bold text-white">Conversation Lines</h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
-              <p class="font-semibold text-red-400">To Seller:</p>
+            <div class="card-content text-gray-200 space-y-3 text-sm">
+              <p class="font-semibold text-red-300">To Seller:</p>
               <p class="italic">
-                “If we sharpen the price, your home becomes the scarce
-                opportunity buyers fight for. We control traffic so they see each
-                other and act quickly.”
+                “If we launch just below the noisy band of stock, we create a
+                gap where your home becomes the scarce opportunity buyers fight
+                for, not one more price-reduced listing.”
               </p>
 
-              <p class="font-semibold text-red-400">To Buyer:</p>
+              <p class="font-semibold text-red-300">To Buyer:</p>
               <p class="italic">
-                “Correctly priced homes in this pocket are not staying on.
-                If this is on your shortlist, I recommend we book you in now.”
+                “Correctly-priced homes in this pocket are not staying on the
+                market. If this one is on your shortlist, we should get you in
+                early.”
               </p>
             </div>
           </div>
@@ -703,32 +775,33 @@
 
         <!-- BALANCED -->
         <div id="tactic-balanced" class="tactic-pane hidden space-y-6">
-          <div class="card border-l-4 border-l-blue-500">
+          <div class="glass-card border-l-4 border-l-sky-500">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-blue-400">
+              <h3 class="text-2xl font-bold text-sky-300">
                 Balanced Market Tactics
               </h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
+            <div class="card-content text-gray-200 space-y-3 text-sm">
               <p>
-                <span class="text-white font-semibold">Goal:</span> Become the
-                curated, obvious choice.
+                <span class="font-semibold text-white">Goal:</span> Become the
+                obvious “Top 3” choice.
               </p>
               <p>
-                <span class="text-white font-semibold">Access:</span> Flexible
-                but intentional – “Shall I reserve a slot for you?”
+                <span class="font-semibold text-white">Access:</span> Controlled
+                flexibility – “Would you like me to reserve a slot for you?”
               </p>
             </div>
           </div>
-          <div class="card">
+          <div class="glass-card">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+              <h3 class="text-2xl font-bold text-white">Conversation Lines</h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
-              <p class="font-semibold text-blue-400">To Team:</p>
+            <div class="card-content text-gray-200 space-y-3 text-sm">
+              <p class="font-semibold text-sky-300">To Team:</p>
               <p class="italic">
                 “We don’t run open buffets. We run curated experiences. When we
-                respect the listing, the market respects the price.”
+                treat every viewing as an event, buyers treat the price
+                seriously.”
               </p>
             </div>
           </div>
@@ -736,32 +809,34 @@
 
         <!-- COOL -->
         <div id="tactic-cool" class="tactic-pane hidden space-y-6">
-          <div class="card border-l-4 border-l-gray-400">
+          <div class="glass-card border-l-4 border-l-emerald-400">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-gray-300">
-                Cool Market Tactics
+              <h3 class="text-2xl font-bold text-emerald-300">
+                Buyer’s Market Tactics
               </h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
+            <div class="card-content text-gray-200 space-y-3 text-sm">
               <p>
-                <span class="text-white font-semibold">Goal:</span> Create
-                relative scarcity in an oversupplied market.
+                <span class="font-semibold text-white">Goal:</span> Create
+                relative scarcity in an oversupplied world.
               </p>
               <p>
-                <span class="text-white font-semibold">Positioning:</span> Lead
-                with the one feature that makes this listing rare.
+                <span class="font-semibold text-white">Positioning:</span> Lead
+                with one rare feature: stand size, view, complex position,
+                security, levies.
               </p>
             </div>
           </div>
-          <div class="card">
+          <div class="glass-card">
             <div class="card-header">
-              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+              <h3 class="text-2xl font-bold text-white">Conversation Lines</h3>
             </div>
-            <div class="card-content text-gray-300 space-y-3">
-              <p class="font-semibold text-gray-300">Price Adjustment:</p>
+            <div class="card-content text-gray-200 space-y-3 text-sm">
+              <p class="font-semibold text-emerald-300">Price Adjustment:</p>
               <p class="italic">
                 “The market has spoken. We can either chase it down slowly, or
-                adjust once and become the must-see home of the month.”
+                make one decisive move now and position your home as the
+                must-see opportunity for serious buyers this month.”
               </p>
             </div>
           </div>
@@ -769,39 +844,35 @@
       </div>
     </section>
 
-    <!-- STRATEGY GENERATOR -->
+    <!-- STRATEGY GENERATOR / MARKET ENGINE -->
     <section id="generator-section" class="app-section hidden">
       <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-3">
+          Market Engine
+        </p>
         <h2 class="text-4xl font-black text-white tracking-tight uppercase">
           Strategy Generator
         </h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
-          Drop in your research and generate a one-page plan to print or share.
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
+          Drop in your last 12 months stats. The FOMO Machine will call the
+          market type and build a scarcity-driven plan for that area.
         </p>
       </div>
 
       <div class="max-w-3xl mx-auto grid grid-cols-1 gap-8">
         <!-- INPUT CARD -->
-        <div class="card border border-red-900">
-          <div class="card-header bg-red-700 text-white">
-            <h3 class="text-xl font-bold">Step 1: Input Market Data</h3>
+        <div class="glass-card border border-red-900/70">
+          <div class="card-header">
+            <h3 class="text-xl font-bold text-white">
+              Step 1: Input Market Data
+            </h3>
           </div>
-          <div class="card-content space-y-5">
+          <div class="card-content space-y-6">
             <div>
               <label class="block text-sm font-bold text-gray-300 mb-1"
                 >Target Suburb / Area</label
               >
               <input id="gen-area" type="text" placeholder="e.g. Lonehill" />
-            </div>
-            <div>
-              <label class="block text-sm font-bold text-gray-300 mb-1"
-                >Sales Status (Last 12 Months)</label
-              >
-              <textarea
-                id="gen-status"
-                rows="4"
-                placeholder="Paste summary of sales activity here..."
-              ></textarea>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -819,21 +890,173 @@
               </div>
             </div>
 
-            <div class="border-t border-neutral-700 pt-4 mt-2">
-              <label class="block text-sm font-bold text-gray-300 mb-2"
-                >Market Temperature</label
-              >
-              <select id="gen-temp">
-                <option value="">-- Select Temperature --</option>
-                <option value="hot">🔥 Hot Seller Market</option>
-                <option value="balanced">⚖️ Balanced Market</option>
-                <option value="cool">❄️ Cool Buyer Market</option>
-              </select>
+            <!-- MARKET MATRIX -->
+            <div class="border-t border-slate-700 pt-4">
+              <h4 class="text-sm font-bold text-gray-200 mb-1">
+                Market Matrix (Last 12 Months)
+              </h4>
+              <p class="text-xs text-gray-400 mb-4">
+                Optional but powerful: plug in your stats for the last 12
+                months. The tool will estimate whether this is a buyer’s,
+                balanced or seller’s market for each property type and overall.
+              </p>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- FULL TITLE -->
+                <div
+                  class="glass-card border border-slate-700/90 bg-slate-950/80"
+                >
+                  <div class="card-header">
+                    <h5 class="text-sm font-bold text-gray-200 uppercase">
+                      Full Title
+                    </h5>
+                  </div>
+                  <div class="card-content space-y-3 text-xs text-gray-300">
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Number of sales</label
+                      >
+                      <input
+                        id="ft-sales"
+                        type="number"
+                        inputmode="numeric"
+                        placeholder="e.g. 55"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Total spend</label
+                      >
+                      <input
+                        id="ft-spend"
+                        type="text"
+                        placeholder="e.g. R 144 489 000"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average price</label
+                      >
+                      <input
+                        id="ft-avgprice"
+                        type="text"
+                        placeholder="e.g. R 2 627 073"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Median price</label
+                      >
+                      <input
+                        id="ft-median"
+                        type="text"
+                        placeholder="e.g. R 2 450 000"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average R/m²</label
+                      >
+                      <input
+                        id="ft-rpm"
+                        type="text"
+                        placeholder="e.g. R 4 253"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average Days on Market</label
+                      >
+                      <input
+                        id="ft-dom"
+                        type="number"
+                        inputmode="numeric"
+                        placeholder="Optional e.g. 73"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SECTIONAL TITLE -->
+                <div
+                  class="glass-card border border-slate-700/90 bg-slate-950/80"
+                >
+                  <div class="card-header">
+                    <h5 class="text-sm font-bold text-gray-200 uppercase">
+                      Sectional Title
+                    </h5>
+                  </div>
+                  <div class="card-content space-y-3 text-xs text-gray-300">
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Number of sales</label
+                      >
+                      <input
+                        id="st-sales"
+                        type="number"
+                        inputmode="numeric"
+                        placeholder="e.g. 65"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Total spend</label
+                      >
+                      <input
+                        id="st-spend"
+                        type="text"
+                        placeholder="e.g. R 87 729 120"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average price</label
+                      >
+                      <input
+                        id="st-avgprice"
+                        type="text"
+                        placeholder="e.g. R 1 349 679"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Median price</label
+                      >
+                      <input
+                        id="st-median"
+                        type="text"
+                        placeholder="e.g. R 1 100 000"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average R/m²</label
+                      >
+                      <input
+                        id="st-rpm"
+                        type="text"
+                        placeholder="e.g. R 13 470"
+                      />
+                    </div>
+                    <div>
+                      <label class="block mb-1 font-semibold"
+                        >Average Days on Market</label
+                      >
+                      <input
+                        id="st-dom"
+                        type="number"
+                        inputmode="numeric"
+                        placeholder="Optional"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <button
               id="generate-btn"
-              class="btn-primary w-full text-lg uppercase tracking-wide"
+              class="btn-primary w-full text-center text-sm"
             >
               Generate Plan
             </button>
@@ -844,116 +1067,109 @@
         <div id="generated-output" class="hidden">
           <div class="generated-report">
             <div
-              class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none"
+              class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none select-none"
             >
-              <div class="text-8xl font-black text-black uppercase">
-                Fry Box
+              <div class="text-7xl md:text-8xl font-black uppercase">
+                FOMO
               </div>
             </div>
 
             <div
-              class="border-b-4 border-red-600 pb-4 mb-6 flex justify-between items-end"
+              class="border-b-4 border-red-600 pb-4 mb-6 flex flex-col md:flex-row md:items-end md:justify-between gap-4"
             >
               <div>
-                <h2 class="text-3xl font-black text-black uppercase">
-                  Strategy Plan
+                <h2 class="text-2xl md:text-3xl font-black uppercase">
+                  FOMO Strategy Plan
                 </h2>
                 <p id="out-area" class="text-red-700 font-bold text-lg mt-1"></p>
               </div>
-              <div class="text-right text-sm text-gray-500 font-mono">
-                CONFIDENTIAL
+              <div class="text-right text-xs text-gray-500 font-mono">
+                Generated by THE FOMO MACHINE<br />CONFIDENTIAL
               </div>
             </div>
 
+            <!-- Overall Market Call -->
+            <div class="mb-6 flex flex-wrap items-center gap-3">
+              <div
+                id="out-overall-badge"
+                class="inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wide"
+              >
+              </div>
+              <p
+                id="out-overall-summary"
+                class="text-sm text-gray-700 max-w-2xl"
+              ></p>
+            </div>
+
+            <!-- Market Snapshot -->
             <div class="mb-8">
               <h3
-                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+                class="text-sm font-bold text-black mb-2 uppercase border-b border-gray-300"
               >
-                1. Market Data
+                1. Market Snapshot (Last 12 Months)
               </h3>
-              <div
-                class="bg-gray-100 p-4 rounded border border-gray-300 mb-4"
-              >
-                <p class="font-bold text-gray-800 mb-1">
-                  12-Month Sales Status:
-                </p>
-                <p
-                  id="out-status"
-                  class="text-gray-700 whitespace-pre-wrap text-sm font-mono"
-                ></p>
+              <div id="out-matrix" class="mt-3 space-y-4 text-sm text-gray-800">
               </div>
-              <div class="flex flex-wrap gap-4 text-sm">
+              <div class="mt-3 flex flex-wrap gap-4 text-xs">
                 <a
                   id="out-p24"
                   href="#"
                   target="_blank"
-                  class="text-red-700 font-bold hover:underline"
+                  class="text-red-700 font-semibold hover:underline"
                   >→ Property24 Competition</a
                 >
                 <a
                   id="out-pp"
                   href="#"
                   target="_blank"
-                  class="text-red-700 font-bold hover:underline"
+                  class="text-red-700 font-semibold hover:underline"
                   >→ Private Property Competition</a
                 >
               </div>
             </div>
 
+            <!-- Execution Strategy -->
             <div class="mb-8">
               <h3
-                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+                class="text-sm font-bold text-black mb-2 uppercase border-b border-gray-300"
               >
                 2. Execution Strategy
               </h3>
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
                 <div>
-                  <h4 class="font-bold text-gray-900 text-sm mb-1">
-                    Diagnosis:
+                  <h4 class="font-bold text-gray-900 mb-1">
+                    Pricing Protocol
                   </h4>
-                  <div
-                    id="out-temp-badge"
-                    class="inline-block px-3 py-1 rounded-sm text-sm font-black mb-4 uppercase tracking-wide border"
-                  ></div>
-
-                  <h4 class="font-bold text-gray-900 text-sm mb-1">
-                    Pricing Protocol:
-                  </h4>
-                  <p id="out-pricing" class="text-gray-700 text-sm"></p>
+                  <p id="out-pricing" class="text-gray-700"></p>
                 </div>
                 <div>
-                  <h4 class="font-bold text-gray-900 text-sm mb-1">
-                    Access Control:
+                  <h4 class="font-bold text-gray-900 mb-1">Access & Flow</h4>
+                  <p id="out-access" class="text-gray-700 mb-3"></p>
+                  <h4 class="font-bold text-gray-900 mb-1">
+                    Visual Strategy
                   </h4>
-                  <p
-                    id="out-access"
-                    class="text-gray-700 text-sm mb-4"
-                  ></p>
-
-                  <h4 class="font-bold text-gray-900 text-sm mb-1">
-                    Visual Strategy:
-                  </h4>
-                  <p id="out-photos" class="text-gray-700 text-sm"></p>
+                  <p id="out-photos" class="text-gray-700"></p>
                 </div>
               </div>
             </div>
 
+            <!-- Script -->
             <div class="mb-8">
               <h3
-                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+                class="text-sm font-bold text-black mb-2 uppercase border-b border-gray-300"
               >
-                3. Critical Script
+                3. Core Script to Seller
               </h3>
               <div
                 id="out-script"
-                class="bg-red-50 border-l-4 border-red-600 p-4 text-gray-800 italic font-medium"
+                class="bg-red-50 border-l-4 border-red-600 p-4 text-gray-800 italic text-sm font-medium"
               ></div>
             </div>
 
             <div class="text-center mt-8 print:hidden">
               <button
                 onclick="window.print()"
-                class="btn-secondary bg-black hover:bg-gray-800 text-white"
+                class="btn-secondary bg-black hover:bg-gray-900 text-white text-sm"
               >
                 🖨️ Print / Save PDF
               </button>
@@ -966,48 +1182,55 @@
     <!-- LEAD GEN -->
     <section id="leadgen-section" class="app-section hidden">
       <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-3">
+          Turn Insight into Appointments
+        </p>
         <h2 class="text-4xl font-black text-white tracking-tight uppercase">
           Lead Generation
         </h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
-          Use scarcity to start high-value conversations with owners.
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
+          Use your market call as the hook. You’re not asking for listings –
+          you’re offering clarity.
         </p>
       </div>
 
       <div class="max-w-4xl mx-auto space-y-6">
-        <div class="card">
+        <div class="glass-card">
           <div class="card-header">
-            <h3 class="text-2xl font-bold text-red-500">
+            <h3 class="text-2xl font-bold text-red-300">
               Limited Slot Price Check
             </h3>
           </div>
-          <div class="card-content text-gray-300 space-y-3">
+          <div class="card-content text-gray-200 space-y-3 text-sm">
             <p>
-              Turn your research into a scarce service instead of a cold-call
-              pitch.
+              Frame your analysis as a scarce service: a small number of
+              high-value “Market of the Moment” consults each week.
             </p>
             <blockquote
-              class="p-4 bg-neutral-900 border-l-4 border-red-600 italic text-gray-100"
+              class="p-4 bg-black/70 border-l-4 border-red-500 italic text-gray-100"
             >
-              “I’m opening four slots this week for a ‘Market of the Moment’
-              price check for owners in your pocket. I show you what’s actually
-              sold and what is sitting. Reply PRICE if you’d like me to hold a
-              slot for you.”
+              “I’ve run the FOMO Machine on <span class="font-semibold"
+                >[AREA]</span
+              >. I’m opening four slots this week to show owners the real
+              numbers – what’s selling, what’s sitting and what buyers will pay
+              today. Would you like me to hold one of those slots for you?”
             </blockquote>
           </div>
         </div>
 
-        <div class="card">
+        <div class="glass-card">
           <div class="card-header">
-            <h3 class="text-2xl font-bold text-red-500">Buyer Match Message</h3>
+            <h3 class="text-2xl font-bold text-red-300">Buyer Match Message</h3>
           </div>
-          <div class="card-content text-gray-300 space-y-3">
+          <div class="card-content text-gray-200 space-y-3 text-sm">
             <blockquote
-              class="p-4 bg-neutral-900 border-l-4 border-red-600 italic text-gray-100"
+              class="p-4 bg-black/70 border-l-4 border-red-500 italic text-gray-100"
             >
-              “I’m working with three qualified buyers looking for a home like
-              yours in this pocket. Before we talk about putting a board up, I
-              can first check if your home is a match for any of them.”
+              “Off the back of my FOMO report for
+              <span class="font-semibold">[AREA]</span>, I’m working with
+              qualified buyers who are actively looking here. Before we talk
+              about putting a board up, I can first check whether your home fits
+              what they can’t find online.”
             </blockquote>
           </div>
         </div>
@@ -1017,11 +1240,15 @@
     <!-- IMPLEMENTATION -->
     <section id="implementation-section" class="app-section hidden">
       <div class="text-center mb-10">
+        <p class="text-xs tracking-[0.3em] uppercase text-gray-400 mb-3">
+          Turn Plans into Contracts
+        </p>
         <h2 class="text-4xl font-black text-white tracking-tight uppercase">
           Implementation
         </h2>
-        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
-          Run a 7-day sprint with a simple weekly review.
+        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
+          A simple 7-day sprint and weekly review to keep every mandate out of
+          “stale fry” territory.
         </p>
       </div>
 
@@ -1029,109 +1256,109 @@
         <!-- 7-day sprint -->
         <div class="space-y-4">
           <h3 class="text-3xl font-bold text-white mb-2">The 7-Day Fix</h3>
-          <div class="p-4 bg-neutral-800 rounded border-l-4 border-red-600">
-            <h4 class="font-bold text-white">Day 1: Audit</h4>
-            <p class="text-sm text-gray-400">
-              Label each mandate as Hot, Balanced or Cool. Spot the stale fries.
+          <div class="glass-card px-4 py-3 border-l-4 border-l-red-500">
+            <p class="text-xs font-bold text-gray-300">Day 1: Audit</p>
+            <p class="text-sm text-gray-200">
+              Run the FOMO Machine for every mandate. Label each as seller’s,
+              balanced or buyer’s market.
             </p>
           </div>
-          <div class="p-4 bg-neutral-800 rounded border-l-4 border-white">
-            <h4 class="font-bold text-white">Day 2: Redesign</h4>
-            <p class="text-sm text-gray-400">
-              Update hero photo, headline and description for clarity and value.
+          <div class="glass-card px-4 py-3 border-l-4 border-l-sky-400">
+            <p class="text-xs font-bold text-gray-300">Day 2: Redesign</p>
+            <p class="text-sm text-gray-200">
+              Update hero photos, headline and description to match the market
+              type.
             </p>
           </div>
-          <div class="p-4 bg-neutral-800 rounded border-l-4 border-red-600">
-            <h4 class="font-bold text-white">Day 3: Alignment</h4>
-            <p class="text-sm text-gray-400">
+          <div class="glass-card px-4 py-3 border-l-4 border-l-red-500">
+            <p class="text-xs font-bold text-gray-300">Day 3: Alignment</p>
+            <p class="text-sm text-gray-200">
               Call the seller with the numbers and agree on the 21-day plan.
             </p>
           </div>
-          <div class="p-4 bg-neutral-800 rounded border-l-4 border-white">
-            <h4 class="font-bold text-white">Day 4: Relaunch</h4>
-            <p class="text-sm text-gray-400">
-              Refresh portals, send to your buyer list and reset the clock.
+          <div class="glass-card px-4 py-3 border-l-4 border-l-emerald-400">
+            <p class="text-xs font-bold text-gray-300">Day 4: Relaunch</p>
+            <p class="text-sm text-gray-200">
+              Refresh portals, send to your buyer list, and track enquiry vs
+              viewing again.
             </p>
           </div>
         </div>
 
         <!-- Weekly review form -->
-        <div class="card border-t-8 border-t-red-600">
+        <div class="glass-card border-t-8 border-t-red-600">
           <div class="card-header">
             <h3 class="text-2xl font-bold text-white">Weekly Listing Review</h3>
           </div>
-          <form id="review-form" class="card-content space-y-5">
+          <form id="review-form" class="card-content space-y-5 text-sm">
             <div>
-              <label class="block text-sm font-bold text-gray-400 mb-1"
+              <label class="block text-xs font-bold text-gray-300 mb-1"
                 >Property Address</label
               >
               <input name="prop-address" type="text" />
             </div>
             <div>
-              <label class="block text-sm font-bold text-gray-400 mb-1"
+              <label class="block text-xs font-bold text-gray-300 mb-1"
                 >Days on Market</label
               >
               <input name="dom" type="number" />
             </div>
 
             <fieldset class="space-y-2">
-              <legend class="text-sm font-bold text-gray-400 mb-2">
-                Temperature
+              <legend class="text-xs font-bold text-gray-300 mb-2">
+                Market Type
               </legend>
-              <div class="flex space-x-4 text-gray-300">
-                <label class="flex items-center">
+              <div class="flex space-x-4 text-gray-200">
+                <label class="flex items-center gap-1">
                   <input
-                    class="mr-2 accent-red-600"
+                    class="accent-red-500"
                     type="radio"
                     name="temp"
-                    value="Hot"
-                  />
-                  Hot
+                    value="Seller"
+                  />Seller
                 </label>
-                <label class="flex items-center">
+                <label class="flex items-center gap-1">
                   <input
-                    class="mr-2 accent-red-600"
+                    class="accent-red-500"
                     type="radio"
                     name="temp"
                     value="Balanced"
-                  />
-                  Balanced
+                  />Balanced
                 </label>
-                <label class="flex items-center">
+                <label class="flex items-center gap-1">
                   <input
-                    class="mr-2 accent-red-600"
+                    class="accent-red-500"
                     type="radio"
                     name="temp"
-                    value="Cool"
-                  />
-                  Cool
+                    value="Buyer"
+                  />Buyer
                 </label>
               </div>
             </fieldset>
 
             <fieldset class="space-y-2">
-              <legend class="text-sm font-bold text-gray-400 mb-2">
-                Fry Box Test
+              <legend class="text-xs font-bold text-gray-300 mb-2">
+                FOMO Checklist
               </legend>
-              <div class="space-y-1 text-gray-300">
-                <label class="flex items-center">
-                  <input class="mr-2 accent-red-600" type="checkbox" />
-                  Price is Top 3 value
+              <div class="space-y-1 text-gray-200">
+                <label class="flex items-center gap-2">
+                  <input class="accent-red-500" type="checkbox" /> Top 3 value
+                  in its bracket
                 </label>
-                <label class="flex items-center">
-                  <input class="mr-2 accent-red-600" type="checkbox" />
-                  Access is controlled
+                <label class="flex items-center gap-2">
+                  <input class="accent-red-500" type="checkbox" /> Viewing
+                  windows are intentionally limited
                 </label>
-                <label class="flex items-center">
-                  <input class="mr-2 accent-red-600" type="checkbox" />
-                  Photos support scarcity
+                <label class="flex items-center gap-2">
+                  <input class="accent-red-500" type="checkbox" /> Photos and
+                  copy create healthy urgency
                 </label>
               </div>
             </fieldset>
 
             <div>
-              <label class="block text-sm font-bold text-gray-400 mb-1"
-                >Action Plan</label
+              <label class="block text-xs font-bold text-gray-300 mb-1"
+                >Action Plan (Next 7 Days)</label
               >
               <textarea name="action-plan" rows="3"></textarea>
             </div>
@@ -1147,11 +1374,10 @@
     </section>
   </main>
 
-  <footer class="mt-20 border-t border-neutral-800 bg-black">
+  <footer class="mt-20 border-t border-neutral-800 bg-black/90">
     <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-500 text-sm uppercase tracking-widest">
-        The "Empty Fry Box" Playbook |
-        <span class="text-red-600">Confidential</span>
+      <p class="text-gray-500 text-xs uppercase tracking-[0.25em]">
+        The FOMO Machine • KW Explore | <span class="text-red-500">Confidential</span>
       </p>
     </div>
   </footer>
@@ -1267,83 +1493,261 @@
         });
       }
 
+      /* ---------- MARKET ENGINE LOGIC ---------- */
+
+      function parseNumber(value) {
+        if (!value) return NaN;
+        const cleaned = value.toString().replace(/[^0-9.-]/g, "");
+        if (!cleaned) return NaN;
+        const num = parseFloat(cleaned);
+        return isNaN(num) ? NaN : num;
+      }
+
+      function classifyMarket(numSales, avgDom) {
+        const sales = isNaN(numSales) ? 0 : numSales;
+        const dom = isNaN(avgDom) ? NaN : avgDom;
+
+        if (!isNaN(dom)) {
+          if (dom <= 60) return "seller";
+          if (dom <= 90) return "balanced";
+          return "buyer";
+        }
+
+        // fallback using only sales volume
+        if (sales >= 60) return "seller";
+        if (sales >= 30) return "balanced";
+        if (sales > 0) return "buyer";
+        return "unknown";
+      }
+
+      function combineMarkets(ftType, stType, ftSales, stSales) {
+        const weights = { seller: 1, balanced: 0, buyer: -1, unknown: 0 };
+        const ftCount = isNaN(ftSales) ? 0 : ftSales;
+        const stCount = isNaN(stSales) ? 0 : stSales;
+        const total = ftCount + stCount;
+        if (!total) return "unknown";
+        const score =
+          (weights[ftType] * ftCount + weights[stType] * stCount) / total;
+        if (score > 0.25) return "seller";
+        if (score < -0.25) return "buyer";
+        return "balanced";
+      }
+
+      function marketLabel(type) {
+        switch (type) {
+          case "seller":
+            return "Seller’s Market";
+          case "buyer":
+            return "Buyer’s Market";
+          case "balanced":
+            return "Balanced Market";
+          default:
+            return "Market Type: Not Enough Data";
+        }
+      }
+
+      function badgeClass(type) {
+        switch (type) {
+          case "seller":
+            return "bg-red-100 text-red-800 border-red-300";
+          case "buyer":
+            return "bg-emerald-100 text-emerald-800 border-emerald-300";
+          case "balanced":
+            return "bg-sky-100 text-sky-800 border-sky-300";
+          default:
+            return "bg-gray-100 text-gray-700 border-gray-300";
+        }
+      }
+
+      function overallConfig(type) {
+        if (type === "seller") {
+          return {
+            summary:
+              "Stock is being absorbed quickly. Correctly priced listings can generate strong competition in the first 14–21 days.",
+            pricing:
+              "Price inside the key buyer search brackets and slightly under the bulk of the competing stock. The goal is to attract multiple serious buyers rather than test the very highest possible price.",
+            access:
+              "Use tight viewing windows (for example, one weekday late-afternoon and a Sunday 2–4pm) so buyers see each other and feel the competition.",
+            photos:
+              "8–12 high-impact images that prove value but don’t show every angle. Create the feeling that seeing the home in person is essential.",
+            script:
+              "“The numbers show we’re in a seller’s market in this pocket. If we launch just under the noisy band of stock and control the viewing windows, we create a gap where buyers compete for your home instead of watching you reduce the price over time.”",
+          };
+        }
+        if (type === "buyer") {
+          return {
+            summary:
+              "Buyers have choice and days on market are stretching. We need to stand out as either the best value or the rare opportunity.",
+            pricing:
+              "Be honest about the competition. Price at or just below the strongest recent sales to position the home as the ‘bargain of the month’ rather than another stale listing.",
+            access:
+              "Use appointment-only viewings to protect the seller’s energy and to signal that every appointment is important, not a desperate open house.",
+            photos:
+              "Lead hard with the one or two rare features (stand size, view, levies, complex position). Everything in the visual story should reinforce why this home is different in a crowded market.",
+            script:
+              "“The stats show we’re in a buyer’s market in this area. We can either chase buyers down with price drops, or we can make one strong move now and position your home as the clear ‘best buy’ for serious buyers this month.”",
+          };
+        }
+        if (type === "balanced") {
+          return {
+            summary:
+              "Good homes are selling while average listings sit. Presentation and precise pricing decide who wins.",
+            pricing:
+              "Price off the median and the best three recent sales, then make sure the home clearly belongs in the Top 3 options buyers will see in that bracket.",
+            access:
+              "Offer flexible but intentional viewing slots: buyers feel looked after, but not like they can browse endlessly without committing.",
+            photos:
+              "15–20 flawless photos, decluttered and consistent in tone. The listing should clearly out-present most of the competition in the same band.",
+            script:
+              "“Your area is trading in a balanced way – good homes are selling, others are sitting. If we make you a Top 3 option on both price and presentation, we get you sold without having to discount later.”",
+          };
+        }
+        // unknown
+        return {
+          summary:
+            "There isn’t enough data to call a clear buyer’s, balanced or seller’s market. Use this plan as a guideline and add more data as it becomes available.",
+          pricing:
+            "Anchor the price on the nearest reliable sales and review buyer feedback every 14–21 days.",
+          access:
+            "Start with clear but flexible viewing windows, then tighten or expand access based on enquiry levels.",
+          photos:
+            "Use professional-quality photos and a clean, simple story to avoid giving buyers any reason to scroll past.",
+          script:
+            "“The data set for this pocket is thin, so instead of guessing, we’re going to launch cleanly, watch the response in the first three weeks and adjust decisively if the market asks us to.”",
+        };
+      }
+
       if (generateBtn) {
         generateBtn.addEventListener("click", function () {
           const area =
-            document.getElementById("gen-area").value || "Target Area";
-          const status =
-            document.getElementById("gen-status").value ||
-            "No sales data provided.";
+            document.getElementById("gen-area").value.trim() ||
+            "Target Area";
           const p24 = document.getElementById("gen-p24").value || "#";
           const pp = document.getElementById("gen-pp").value || "#";
-          const temp = document.getElementById("gen-temp").value;
 
-          if (!temp) {
-            alert("Please select a market temperature.");
-            return;
-          }
+          // Raw strings for display
+          const ftSpend = document.getElementById("ft-spend").value.trim();
+          const ftAvgPrice = document.getElementById("ft-avgprice").value.trim();
+          const ftMedian = document.getElementById("ft-median").value.trim();
+          const ftRpm = document.getElementById("ft-rpm").value.trim();
+          const stSpend = document.getElementById("st-spend").value.trim();
+          const stAvgPrice = document.getElementById("st-avgprice").value.trim();
+          const stMedian = document.getElementById("st-median").value.trim();
+          const stRpm = document.getElementById("st-rpm").value.trim();
 
+          // Numbers for calculation
+          const ftSales = parseNumber(
+            document.getElementById("ft-sales").value
+          );
+          const ftDom = parseNumber(document.getElementById("ft-dom").value);
+          const stSales = parseNumber(
+            document.getElementById("st-sales").value
+          );
+          const stDom = parseNumber(document.getElementById("st-dom").value);
+
+          const ftType = classifyMarket(ftSales, ftDom);
+          const stType = classifyMarket(stSales, stDom);
+          const overallType = combineMarkets(ftType, stType, ftSales, stSales);
+          const config = overallConfig(overallType);
+
+          // Output elements
           const outArea = document.getElementById("out-area");
-          const outStatus = document.getElementById("out-status");
+          const outOverallBadge = document.getElementById("out-overall-badge");
+          const outOverallSummary =
+            document.getElementById("out-overall-summary");
+          const outMatrix = document.getElementById("out-matrix");
           const outP24 = document.getElementById("out-p24");
           const outPP = document.getElementById("out-pp");
-          const outTempBadge = document.getElementById("out-temp-badge");
           const outPricing = document.getElementById("out-pricing");
           const outAccess = document.getElementById("out-access");
           const outPhotos = document.getElementById("out-photos");
           const outScript = document.getElementById("out-script");
 
           outArea.textContent = "FOR: " + area.toUpperCase();
-          outStatus.textContent = status;
-          outP24.href = p24;
-          outPP.href = pp;
 
-          let config;
-          if (temp === "hot") {
-            config = {
-              badge: "🔥 HOT SELLER MARKET",
-              cls: "bg-red-100 text-red-800 border-red-300",
-              pricing:
-                "Price just under key search brackets to maximise eyeballs and create multiple offers. Do not test the absolute top of the market.",
-              access:
-                "One or two tight viewing windows (for example Sunday 2–4pm) so buyers see each other and feel the urgency.",
-              photos:
-                "Use 8–12 of your strongest photos. Enough to prove value, not enough to feel like a full tour.",
-              script:
-                "“This pocket is moving fast. If we sharpen the price, we put you where buyers fight for the home instead of ignoring it.”",
-            };
-          } else if (temp === "balanced") {
-            config = {
-              badge: "⚖️ BALANCED MARKET",
-              cls: "bg-blue-100 text-blue-800 border-blue-300",
-              pricing:
-                "You must be clear Top 3 value in your bracket. Use recent solds, not asking prices, as your anchor.",
-              access:
-                "Offer flexible, appointment-based showings with language like ‘Would you like me to hold a slot for you?’",
-              photos:
-                "15–20 flawless photos, better than your competitors. No clutter, no confusion.",
-              script:
-                "“In this price range buyers compare everything. Our job is to make yours the obvious choice on both price and presentation.”",
-            };
-          } else {
-            config = {
-              badge: "❄️ COOL BUYER MARKET",
-              cls: "bg-gray-200 text-gray-800 border-gray-400",
-              pricing:
-                "Be either the best bargain or clearly unique. Anything in the middle will sit.",
-              access:
-                "Appointment only. Protect the seller’s energy and create a sense that every viewing matters.",
-              photos:
-                "Lead with the one rare feature (view, garden, stand size, complex position) and echo it through the images.",
-              script:
-                "“We planned a strong first three weeks. The market has spoken. We can either chase it down slowly, or adjust once and become the must-see home.”",
-            };
-          }
+          outOverallBadge.textContent = marketLabel(overallType);
+          outOverallBadge.className =
+            "inline-flex items-center px-3 py-1 rounded-full border text-xs font-bold uppercase tracking-wide " +
+            badgeClass(overallType);
 
-          outTempBadge.textContent = config.badge;
-          outTempBadge.className =
-            "inline-block px-3 py-1 rounded-sm text-sm font-black mb-4 uppercase tracking-wide border " +
-            config.cls;
+          outOverallSummary.textContent = config.summary;
+
+          // Build matrix HTML
+          const ftSalesDisplay = isNaN(ftSales) ? "—" : ftSales;
+          const ftDomDisplay = isNaN(ftDom) ? "n/a" : ftDom + " days";
+          const stSalesDisplay = isNaN(stSales) ? "—" : stSales;
+          const stDomDisplay = isNaN(stDom) ? "n/a" : stDom + " days";
+
+          const ftLabel = marketLabel(ftType);
+          const stLabel = marketLabel(stType);
+
+          outMatrix.innerHTML =
+            '<div class="grid grid-cols-1 md:grid-cols-2 gap-4">' +
+            '<div class="border border-gray-200 rounded-lg p-4 bg-gray-50">' +
+            '<div class="flex items-center justify-between mb-2">' +
+            '<h4 class="font-bold text-gray-900 text-sm uppercase">Full Title</h4>' +
+            '<span class="px-2 py-1 rounded-full text-[0.65rem] font-bold border ' +
+            badgeClass(ftType) +
+            '">' +
+            ftLabel +
+            "</span>" +
+            "</div>" +
+            "<dl class='text-xs text-gray-700 space-y-1'>" +
+            "<div><dt class='font-semibold inline'>Number of sales:</dt> <dd class='inline'>" +
+            ftSalesDisplay +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Total spend:</dt> <dd class='inline'>" +
+            (ftSpend || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average price:</dt> <dd class='inline'>" +
+            (ftAvgPrice || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Median price:</dt> <dd class='inline'>" +
+            (ftMedian || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average R/m²:</dt> <dd class='inline'>" +
+            (ftRpm || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average DOM:</dt> <dd class='inline'>" +
+            ftDomDisplay +
+            "</dd></div>" +
+            "</dl>" +
+            "</div>" +
+            '<div class="border border-gray-200 rounded-lg p-4 bg-gray-50">' +
+            '<div class="flex items-center justify-between mb-2">' +
+            '<h4 class="font-bold text-gray-900 text-sm uppercase">Sectional Title</h4>' +
+            '<span class="px-2 py-1 rounded-full text-[0.65rem] font-bold border ' +
+            badgeClass(stType) +
+            '">' +
+            stLabel +
+            "</span>" +
+            "</div>" +
+            "<dl class='text-xs text-gray-700 space-y-1'>" +
+            "<div><dt class='font-semibold inline'>Number of sales:</dt> <dd class='inline'>" +
+            stSalesDisplay +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Total spend:</dt> <dd class='inline'>" +
+            (stSpend || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average price:</dt> <dd class='inline'>" +
+            (stAvgPrice || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Median price:</dt> <dd class='inline'>" +
+            (stMedian || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average R/m²:</dt> <dd class='inline'>" +
+            (stRpm || "—") +
+            "</dd></div>" +
+            "<div><dt class='font-semibold inline'>Average DOM:</dt> <dd class='inline'>" +
+            stDomDisplay +
+            "</dd></div>" +
+            "</dl>" +
+            "</div>" +
+            "</div>";
+
+          outP24.href = p24 || "#";
+          outPP.href = pp || "#";
+
           outPricing.textContent = config.pricing;
           outAccess.textContent = config.access;
           outPhotos.textContent = config.photos;
