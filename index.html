@@ -1,12 +1,1362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>The Empty Fry Box Playbook</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Empty Fry Box Playbook</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- KW logo as favicon -->
+  <link rel="icon" type="image/png" href="kw-logo.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+    }
+
+    /* NAV LINKS */
+    .nav-link {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.375rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #d1d5db; /* gray-300 */
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .nav-link:hover {
+      background-color: rgba(127, 29, 29, 0.3); /* red-800/30 */
+      color: #ef4444; /* red-500 */
+    }
+    .nav-link.active {
+      background-color: #dc2626; /* red-600 */
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    }
+
+    /* PLAYBOOK TABS */
+    .tab-link {
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem 0.75rem 0 0;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #9ca3af; /* gray-400 */
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease;
+    }
+    .tab-link:hover {
+      background-color: #404040; /* neutral-700 */
+      color: #ffffff;
+    }
+    .tab-link.active {
+      border-color: #dc2626; /* red-600 */
+      color: #ef4444; /* red-500 */
+      font-weight: 700;
+      background-color: #262626; /* neutral-800 */
+    }
+
+    /* TACTIC FILTER BUTTONS */
+    .tactic-button {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #d1d5db; /* gray-300 */
+      background-color: #262626; /* neutral-800 */
+      border: 1px solid #404040; /* neutral-700 */
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease,
+        border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .tactic-button:hover {
+      background-color: #404040; /* neutral-700 */
+    }
+    .tactic-button.active {
+      background-color: #dc2626; /* red-600 */
+      color: #ffffff;
+      border-color: #dc2626;
+      box-shadow: 0 10px 25px -5px rgba(127, 29, 29, 0.8);
+    }
+
+    /* GENERIC CARD */
+    .card {
+      background-color: #262626; /* neutral-800 */
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      border: 1px solid #404040; /* neutral-700 */
+    }
+    .card-header {
+      padding: 1.25rem;
+      background-color: rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid #404040;
+    }
+    .card-content {
+      padding: 1.5rem;
+    }
+
+    /* TIMELINE */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+    }
+    .timeline-step {
+      flex: 1 1 0;
+      background-color: #262626;
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      border-left-width: 4px;
+      border-left-style: solid;
+      border-left-color: #4b5563; /* gray-600 */
+      color: #e5e7eb; /* gray-200 */
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6);
+    }
+    .timeline-step-arrow {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.875rem;
+      color: #4b5563;
+    }
+    @media (min-width: 768px) {
+      .timeline {
+        flex-direction: row;
+      }
+      .timeline-step-arrow {
+        display: flex;
+      }
+    }
+
+    /* FORM INPUTS */
+    input[type="text"],
+    input[type="number"],
+    input[type="url"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      background-color: #404040; /* neutral-700 */
+      border-radius: 0.375rem;
+      border: 1px solid #525252; /* neutral-600 */
+      color: #ffffff;
+      font-size: 0.875rem;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #9ca3af; /* gray-400 */
+    }
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #ef4444; /* red-500 */
+      box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.6);
+    }
+
+    /* BUTTONS */
+    .btn-primary {
+      padding: 0.75rem 1.25rem;
+      background-color: #dc2626; /* red-600 */
+      color: #ffffff;
+      border-radius: 0.375rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px -5px rgba(127, 29, 29, 0.9);
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease,
+        box-shadow 0.15s ease;
+    }
+    .btn-primary:hover {
+      background-color: #b91c1c; /* red-700 */
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      padding: 0.5rem 1.25rem;
+      background-color: #525252; /* neutral-600 */
+      color: #ffffff;
+      border-radius: 0.375rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .btn-secondary:hover {
+      background-color: #737373; /* neutral-500 */
+    }
+
+    /* GENERATED REPORT (LIGHT FOR PRINTING) */
+    .generated-report {
+      position: relative;
+      background-color: #ffffff;
+      color: #111827;
+      border-radius: 0.75rem;
+      padding: 2rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.25);
+    }
+
+    /* DARK MODE SCROLLBAR */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #171717;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #404040;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b91c1c;
+    }
+  </style>
 </head>
-<body>
-    <h1>Empty Fry Box Playbook</h1>
-    <p>Minimal stub to confirm zip creation. Replace with full HTML if needed.</p>
+
+<body class="bg-neutral-900 text-gray-100 selection:bg-red-600 selection:text-white">
+  <!-- HEADER -->
+  <header
+    class="bg-black border-b border-neutral-800 sticky top-0 z-50 shadow-lg shadow-black/50"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-3">
+          <img
+            src="kw-logo.png"
+            alt="Keller Williams"
+            class="h-8 w-auto object-contain"
+          />
+          <h1 class="text-xl font-black text-white tracking-wide uppercase">
+            Fry Box <span class="text-red-600">Playbook</span>
+          </h1>
+        </div>
+
+        <nav class="hidden md:block">
+          <div id="main-nav" class="ml-10 flex items-baseline space-x-2">
+            <a class="nav-link active" data-target="home-section">Home</a>
+            <a class="nav-link" data-target="playbook-section">The Playbook</a>
+            <a class="nav-link" data-target="tactics-section">Dynamic Tactics</a>
+            <a class="nav-link" data-target="generator-section">Strategy Gen</a>
+            <a class="nav-link" data-target="leadgen-section">Lead Gen</a>
+            <a class="nav-link" data-target="implementation-section"
+              >Implementation</a
+            >
+          </div>
+        </nav>
+
+        <div class="md:hidden">
+          <button
+            id="mobile-menu-button"
+            class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-neutral-800 focus:outline-none"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="block h-6 w-6"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE NAV -->
+    <div
+      id="mobile-menu"
+      class="md:hidden hidden bg-neutral-900 border-b border-neutral-800"
+    >
+      <div id="mobile-nav" class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        <a class="block nav-link active" data-target="home-section">Home</a>
+        <a class="block nav-link" data-target="playbook-section">The Playbook</a>
+        <a class="block nav-link" data-target="tactics-section">Dynamic Tactics</a>
+        <a class="block nav-link" data-target="generator-section">Strategy Gen</a>
+        <a class="block nav-link" data-target="leadgen-section">Lead Gen</a>
+        <a class="block nav-link" data-target="implementation-section"
+          >Implementation</a
+        >
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <!-- HOME -->
+    <section id="home-section" class="app-section">
+      <div class="text-center mb-12">
+        <h2 class="text-5xl font-black text-white tracking-tight uppercase mb-4">
+          The "<span class="text-red-600">Empty Fry Box</span>" Playbook
+        </h2>
+        <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400">
+          Strategic real estate systems for the modern agent.<br />
+          <span class="text-red-500 font-semibold">WIN</span> listings.
+          <span class="text-red-500 font-semibold">PRICE</span> correctly.
+          <span class="text-red-500 font-semibold">CREATE</span> urgency.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-stretch">
+        <!-- Core principle -->
+        <div class="card border-l-4 border-l-red-600">
+          <div class="card-content space-y-4">
+            <h3 class="text-2xl font-bold text-white">The Core Principle</h3>
+            <p class="text-gray-300">
+              Buyers don’t respond to how much stock is actually in the box –
+              they respond to how much feels like is
+              <strong class="text-white">left</strong>. Your listings work the
+              same way.
+            </p>
+            <ul class="space-y-3 text-gray-400">
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-red-600 rounded-full mr-3"></span>
+                <span><strong class="text-white">Too empty:</strong> feels desperate.</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-gray-600 rounded-full mr-3"></span>
+                <span><strong class="text-white">Overflowing:</strong> no urgency.</span>
+              </li>
+              <li class="flex items-center">
+                <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                <span
+                  ><strong class="text-white">Almost not enough:</strong> healthy
+                  pressure, stronger offers.</span
+                >
+              </li>
+            </ul>
+            <div class="mt-4 p-4 bg-black/30 rounded border border-neutral-700">
+              <p class="text-gray-300 italic">
+                “We design price, access and information so serious buyers feel:
+                <span class="text-red-500 font-semibold"
+                  >‘If I wait, I might lose this.’</span
+                >”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillars -->
+        <div class="space-y-6 flex flex-col justify-center">
+          <div class="space-y-4">
+            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
+              <h4 class="text-xl font-bold text-white">Micro-Dominance</h4>
+              <p class="text-gray-400">
+                Own a few streets, not the whole city. Specialists win.
+              </p>
+            </div>
+            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
+              <h4 class="text-xl font-bold text-white">Accuracy</h4>
+              <p class="text-gray-400">
+                Price inside the correct search brackets, not at random numbers.
+              </p>
+            </div>
+            <div class="p-5 bg-neutral-800 rounded-lg border-l-4 border-white">
+              <h4 class="text-xl font-bold text-white">Velocity</h4>
+              <p class="text-gray-400">
+                Short, intense campaigns beat slow, noisy ones every time.
+              </p>
+            </div>
+          </div>
+          <div class="p-6 bg-red-700 text-white rounded-lg border border-red-500 text-center">
+            <h4 class="text-xl font-black uppercase tracking-wider mb-2">
+              The Formula
+            </h4>
+            <p class="text-lg font-medium text-red-50">
+              Correct Price + Controlled Access + Phased Marketing =
+              <span class="font-bold text-white text-2xl block mt-2">
+                Perceived Scarcity &amp; Stronger Offers
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYBOOK -->
+    <section id="playbook-section" class="app-section hidden">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-black text-white tracking-tight uppercase">
+          The Core Playbook
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
+          Four modules to run the Empty Fry Box system.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="border-b border-neutral-700 mb-8">
+        <nav
+          id="playbook-tabs"
+          class="-mb-px flex flex-wrap justify-center gap-2 md:gap-6"
+        >
+          <a class="tab-link active" data-target="playbook-tab-1"
+            >1. Market Analysis</a
+          >
+          <a class="tab-link" data-target="playbook-tab-2">2. Positioning</a>
+          <a class="tab-link" data-target="playbook-tab-3">3. Pricing</a>
+          <a class="tab-link" data-target="playbook-tab-4">4. Campaigns</a>
+        </nav>
+      </div>
+
+      <!-- Tab content -->
+      <div id="playbook-tab-content">
+        <!-- TAB 1 -->
+        <div id="playbook-tab-1" class="playbook-tab">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">
+            Module 1: Reading the Market
+          </h3>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="card border-t-4 border-t-red-600">
+              <div class="card-header">
+                <h4 class="text-2xl font-bold text-red-500">
+                  Hot Seller Market
+                </h4>
+              </div>
+              <div class="card-content text-gray-300 space-y-2">
+                <p><strong>Signs:</strong> Low stock, quick sales.</p>
+                <p><strong>Move:</strong> Manage traffic and set deadlines.</p>
+              </div>
+            </div>
+
+            <div class="card border-t-4 border-t-blue-500">
+              <div class="card-header">
+                <h4 class="text-2xl font-bold text-blue-400">
+                  Balanced Market
+                </h4>
+              </div>
+              <div class="card-content text-gray-300 space-y-2">
+                <p><strong>Signs:</strong> Average DOM, value sensitive.</p>
+                <p><strong>Move:</strong> Be Top 3 value and Top 3 photos.</p>
+              </div>
+            </div>
+
+            <div class="card border-t-4 border-t-gray-400">
+              <div class="card-header">
+                <h4 class="text-2xl font-bold text-gray-300">
+                  Cool Buyer Market
+                </h4>
+              </div>
+              <div class="card-content text-gray-300 space-y-2">
+                <p><strong>Signs:</strong> High stock, price cuts.</p>
+                <p>
+                  <strong>Move:</strong> Either be the bargain or the rare find.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2 -->
+        <div id="playbook-tab-2" class="playbook-tab hidden">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">
+            Module 2: Own Your Micro-Areas
+          </h3>
+          <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="text-2xl font-bold text-red-500">
+                  The Selection Matrix
+                </h4>
+              </div>
+              <div class="card-content text-gray-300 space-y-3">
+                <p>Select 1–3 lanes to dominate:</p>
+                <p
+                  class="text-center font-mono text-white text-lg p-3 bg-black rounded border border-neutral-700"
+                >
+                  [Suburb] + [Type] + [Price]
+                </p>
+                <p>
+                  <span class="text-red-500 font-semibold">Weak:</span> “I sell
+                  everywhere.”
+                </p>
+                <p>
+                  <span class="text-green-400 font-semibold">Strong:</span> “I
+                  specialise in full-title homes in Lonehill between R2.5m and
+                  R3.5m.”
+                </p>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h4 class="text-2xl font-bold text-red-500">
+                  Positioning Script
+                </h4>
+              </div>
+              <div class="card-content text-gray-300 space-y-3">
+                <p>When asked “Why you?”:</p>
+                <blockquote
+                  class="p-4 bg-neutral-900 border-l-4 border-red-600 rounded-r-lg italic text-gray-100"
+                >
+                  “I’m the specialist for this pocket. I track the real numbers,
+                  price you to beat your competition and run structured
+                  campaigns that create demand instead of desperation.”
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3 -->
+        <div id="playbook-tab-3" class="playbook-tab hidden">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">
+            Module 3: Pricing for Scarcity
+          </h3>
+          <div class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="text-2xl font-bold text-red-500">
+                    Search Bracket Rule
+                  </h4>
+                </div>
+                <div class="card-content text-gray-300 space-y-2">
+                  <p>Buyers search in logical brackets (R2–R2.5m etc.).</p>
+                  <p>
+                    <span class="text-red-500 font-semibold">Wrong:</span>
+                    R2,050,000 – invisible in most searches.
+                  </p>
+                  <p>
+                    <span class="text-green-400 font-semibold">Right:</span>
+                    R1,995,000 – more eyeballs, looks like value.
+                  </p>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="text-2xl font-bold text-red-500">
+                    Top 3 Value Test
+                  </h4>
+                </div>
+                <div class="card-content text-gray-300 space-y-2">
+                  <p class="italic text-white">
+                    “If I were a serious buyer with cash, would this home be in
+                    my Top 3 to view this weekend?”
+                  </p>
+                  <p>
+                    <span class="text-green-400 font-semibold">Yes:</span> launch
+                    hard.
+                  </p>
+                  <p>
+                    <span class="text-red-500 font-semibold">No:</span> fix
+                    price or condition first.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="text-2xl font-bold text-white mb-4 text-center">
+                The 14–21 Day Rule
+              </h4>
+              <div class="timeline">
+                <div class="timeline-step border-white">
+                  <h5 class="font-bold text-lg text-white">Days 1–7: Launch</h5>
+                  <p class="text-sm text-gray-400">
+                    Max exposure. Track enquiries vs viewings.
+                  </p>
+                </div>
+                <div class="timeline-step-arrow">→</div>
+                <div class="timeline-step border-red-500 bg-red-900/20">
+                  <h5 class="font-bold text-lg text-red-400">
+                    Days 8–14: Feedback
+                  </h5>
+                  <p class="text-sm text-gray-400">
+                    No second viewings or offers = market rejection.
+                  </p>
+                </div>
+                <div class="timeline-step-arrow">→</div>
+                <div class="timeline-step border-red-600 bg-red-900/40">
+                  <h5 class="font-bold text-lg text-red-500">
+                    Days 15–21: Adjustment
+                  </h5>
+                  <p class="text-sm text-gray-400">
+                    Don’t drift. Adjust strategy before the listing goes stale.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4 -->
+        <div id="playbook-tab-4" class="playbook-tab hidden">
+          <h3 class="text-3xl font-bold text-white mb-6 text-center">
+            Module 4: Campaign Structure
+          </h3>
+          <div class="timeline">
+            <div class="timeline-step border-gray-500">
+              <h5 class="font-bold text-lg text-white">Phase 1: Pre-Launch</h5>
+              <p class="text-sm text-gray-400">
+                Prime your buyer list. Offer early viewing slots.
+              </p>
+            </div>
+            <div class="timeline-step-arrow">→</div>
+            <div class="timeline-step border-red-500">
+              <h5 class="font-bold text-lg text-red-400">Phase 2: Launch</h5>
+              <p class="text-sm text-gray-400">
+                High-impact photos, strict viewing windows, clear call-to-action.
+              </p>
+            </div>
+            <div class="timeline-step-arrow">→</div>
+            <div class="timeline-step border-white">
+              <h5 class="font-bold text-lg text-white">Phase 3: Adjust</h5>
+              <p class="text-sm text-gray-400">
+                If strong, set deadlines. If weak, adjust by day 21.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TACTICS -->
+    <section id="tactics-section" class="app-section hidden">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-black text-white tracking-tight uppercase">
+          Dynamic Tactics
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
+          Select the current temperature of your market to see the right moves.
+        </p>
+      </div>
+
+      <!-- Filter buttons -->
+      <div id="tactic-filter" class="flex justify-center flex-wrap gap-4 mb-10">
+        <button class="tactic-button active" data-target="tactic-hot">
+          🔥 Hot Market
+        </button>
+        <button class="tactic-button" data-target="tactic-balanced">
+          ⚖️ Balanced Market
+        </button>
+        <button class="tactic-button" data-target="tactic-cool">
+          ❄️ Cool Market
+        </button>
+      </div>
+
+      <!-- Panes -->
+      <div class="max-w-4xl mx-auto">
+        <!-- HOT -->
+        <div id="tactic-hot" class="tactic-pane space-y-6">
+          <div class="card border-l-4 border-l-red-600">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-red-500">
+                Hot Market Tactics
+              </h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p>
+                <span class="text-white font-semibold">Goal:</span> Harness
+                demand without underselling.
+              </p>
+              <p>
+                <span class="text-white font-semibold">Access:</span> Tight
+                viewing windows, group buyers together.
+              </p>
+              <p>
+                <span class="text-white font-semibold">Photos:</span> High
+                impact, not too many – create curiosity.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p class="font-semibold text-red-400">To Seller:</p>
+              <p class="italic">
+                “If we sharpen the price, your home becomes the scarce
+                opportunity buyers fight for. We control traffic so they see each
+                other and act quickly.”
+              </p>
+
+              <p class="font-semibold text-red-400">To Buyer:</p>
+              <p class="italic">
+                “Correctly priced homes in this pocket are not staying on.
+                If this is on your shortlist, I recommend we book you in now.”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- BALANCED -->
+        <div id="tactic-balanced" class="tactic-pane hidden space-y-6">
+          <div class="card border-l-4 border-l-blue-500">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-blue-400">
+                Balanced Market Tactics
+              </h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p>
+                <span class="text-white font-semibold">Goal:</span> Become the
+                curated, obvious choice.
+              </p>
+              <p>
+                <span class="text-white font-semibold">Access:</span> Flexible
+                but intentional – “Shall I reserve a slot for you?”
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p class="font-semibold text-blue-400">To Team:</p>
+              <p class="italic">
+                “We don’t run open buffets. We run curated experiences. When we
+                respect the listing, the market respects the price.”
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- COOL -->
+        <div id="tactic-cool" class="tactic-pane hidden space-y-6">
+          <div class="card border-l-4 border-l-gray-400">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-gray-300">
+                Cool Market Tactics
+              </h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p>
+                <span class="text-white font-semibold">Goal:</span> Create
+                relative scarcity in an oversupplied market.
+              </p>
+              <p>
+                <span class="text-white font-semibold">Positioning:</span> Lead
+                with the one feature that makes this listing rare.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="text-2xl font-bold text-white">Scripts</h3>
+            </div>
+            <div class="card-content text-gray-300 space-y-3">
+              <p class="font-semibold text-gray-300">Price Adjustment:</p>
+              <p class="italic">
+                “The market has spoken. We can either chase it down slowly, or
+                adjust once and become the must-see home of the month.”
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STRATEGY GENERATOR -->
+    <section id="generator-section" class="app-section hidden">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-black text-white tracking-tight uppercase">
+          Strategy Generator
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
+          Drop in your research and generate a one-page plan to print or share.
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto grid grid-cols-1 gap-8">
+        <!-- INPUT CARD -->
+        <div class="card border border-red-900">
+          <div class="card-header bg-red-700 text-white">
+            <h3 class="text-xl font-bold">Step 1: Input Market Data</h3>
+          </div>
+          <div class="card-content space-y-5">
+            <div>
+              <label class="block text-sm font-bold text-gray-300 mb-1"
+                >Target Suburb / Area</label
+              >
+              <input id="gen-area" type="text" placeholder="e.g. Lonehill" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-gray-300 mb-1"
+                >Sales Status (Last 12 Months)</label
+              >
+              <textarea
+                id="gen-status"
+                rows="4"
+                placeholder="Paste summary of sales activity here..."
+              ></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-bold text-gray-300 mb-1"
+                  >Property24 Link</label
+                >
+                <input id="gen-p24" type="url" placeholder="https://..." />
+              </div>
+              <div>
+                <label class="block text-sm font-bold text-gray-300 mb-1"
+                  >Private Property Link</label
+                >
+                <input id="gen-pp" type="url" placeholder="https://..." />
+              </div>
+            </div>
+
+            <div class="border-t border-neutral-700 pt-4 mt-2">
+              <label class="block text-sm font-bold text-gray-300 mb-2"
+                >Market Temperature</label
+              >
+              <select id="gen-temp">
+                <option value="">-- Select Temperature --</option>
+                <option value="hot">🔥 Hot Seller Market</option>
+                <option value="balanced">⚖️ Balanced Market</option>
+                <option value="cool">❄️ Cool Buyer Market</option>
+              </select>
+            </div>
+
+            <button
+              id="generate-btn"
+              class="btn-primary w-full text-lg uppercase tracking-wide"
+            >
+              Generate Plan
+            </button>
+          </div>
+        </div>
+
+        <!-- OUTPUT CARD -->
+        <div id="generated-output" class="hidden">
+          <div class="generated-report">
+            <div
+              class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none"
+            >
+              <div class="text-8xl font-black text-black uppercase">
+                Fry Box
+              </div>
+            </div>
+
+            <div
+              class="border-b-4 border-red-600 pb-4 mb-6 flex justify-between items-end"
+            >
+              <div>
+                <h2 class="text-3xl font-black text-black uppercase">
+                  Strategy Plan
+                </h2>
+                <p id="out-area" class="text-red-700 font-bold text-lg mt-1"></p>
+              </div>
+              <div class="text-right text-sm text-gray-500 font-mono">
+                CONFIDENTIAL
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h3
+                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+              >
+                1. Market Data
+              </h3>
+              <div
+                class="bg-gray-100 p-4 rounded border border-gray-300 mb-4"
+              >
+                <p class="font-bold text-gray-800 mb-1">
+                  12-Month Sales Status:
+                </p>
+                <p
+                  id="out-status"
+                  class="text-gray-700 whitespace-pre-wrap text-sm font-mono"
+                ></p>
+              </div>
+              <div class="flex flex-wrap gap-4 text-sm">
+                <a
+                  id="out-p24"
+                  href="#"
+                  target="_blank"
+                  class="text-red-700 font-bold hover:underline"
+                  >→ Property24 Competition</a
+                >
+                <a
+                  id="out-pp"
+                  href="#"
+                  target="_blank"
+                  class="text-red-700 font-bold hover:underline"
+                  >→ Private Property Competition</a
+                >
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h3
+                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+              >
+                2. Execution Strategy
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 class="font-bold text-gray-900 text-sm mb-1">
+                    Diagnosis:
+                  </h4>
+                  <div
+                    id="out-temp-badge"
+                    class="inline-block px-3 py-1 rounded-sm text-sm font-black mb-4 uppercase tracking-wide border"
+                  ></div>
+
+                  <h4 class="font-bold text-gray-900 text-sm mb-1">
+                    Pricing Protocol:
+                  </h4>
+                  <p id="out-pricing" class="text-gray-700 text-sm"></p>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-900 text-sm mb-1">
+                    Access Control:
+                  </h4>
+                  <p
+                    id="out-access"
+                    class="text-gray-700 text-sm mb-4"
+                  ></p>
+
+                  <h4 class="font-bold text-gray-900 text-sm mb-1">
+                    Visual Strategy:
+                  </h4>
+                  <p id="out-photos" class="text-gray-700 text-sm"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h3
+                class="text-lg font-bold text-black mb-2 uppercase border-b border-gray-300"
+              >
+                3. Critical Script
+              </h3>
+              <div
+                id="out-script"
+                class="bg-red-50 border-l-4 border-red-600 p-4 text-gray-800 italic font-medium"
+              ></div>
+            </div>
+
+            <div class="text-center mt-8 print:hidden">
+              <button
+                onclick="window.print()"
+                class="btn-secondary bg-black hover:bg-gray-800 text-white"
+              >
+                🖨️ Print / Save PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEAD GEN -->
+    <section id="leadgen-section" class="app-section hidden">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-black text-white tracking-tight uppercase">
+          Lead Generation
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
+          Use scarcity to start high-value conversations with owners.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto space-y-6">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-2xl font-bold text-red-500">
+              Limited Slot Price Check
+            </h3>
+          </div>
+          <div class="card-content text-gray-300 space-y-3">
+            <p>
+              Turn your research into a scarce service instead of a cold-call
+              pitch.
+            </p>
+            <blockquote
+              class="p-4 bg-neutral-900 border-l-4 border-red-600 italic text-gray-100"
+            >
+              “I’m opening four slots this week for a ‘Market of the Moment’
+              price check for owners in your pocket. I show you what’s actually
+              sold and what is sitting. Reply PRICE if you’d like me to hold a
+              slot for you.”
+            </blockquote>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="text-2xl font-bold text-red-500">Buyer Match Message</h3>
+          </div>
+          <div class="card-content text-gray-300 space-y-3">
+            <blockquote
+              class="p-4 bg-neutral-900 border-l-4 border-red-600 italic text-gray-100"
+            >
+              “I’m working with three qualified buyers looking for a home like
+              yours in this pocket. Before we talk about putting a board up, I
+              can first check if your home is a match for any of them.”
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPLEMENTATION -->
+    <section id="implementation-section" class="app-section hidden">
+      <div class="text-center mb-10">
+        <h2 class="text-4xl font-black text-white tracking-tight uppercase">
+          Implementation
+        </h2>
+        <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-400">
+          Run a 7-day sprint with a simple weekly review.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <!-- 7-day sprint -->
+        <div class="space-y-4">
+          <h3 class="text-3xl font-bold text-white mb-2">The 7-Day Fix</h3>
+          <div class="p-4 bg-neutral-800 rounded border-l-4 border-red-600">
+            <h4 class="font-bold text-white">Day 1: Audit</h4>
+            <p class="text-sm text-gray-400">
+              Label each mandate as Hot, Balanced or Cool. Spot the stale fries.
+            </p>
+          </div>
+          <div class="p-4 bg-neutral-800 rounded border-l-4 border-white">
+            <h4 class="font-bold text-white">Day 2: Redesign</h4>
+            <p class="text-sm text-gray-400">
+              Update hero photo, headline and description for clarity and value.
+            </p>
+          </div>
+          <div class="p-4 bg-neutral-800 rounded border-l-4 border-red-600">
+            <h4 class="font-bold text-white">Day 3: Alignment</h4>
+            <p class="text-sm text-gray-400">
+              Call the seller with the numbers and agree on the 21-day plan.
+            </p>
+          </div>
+          <div class="p-4 bg-neutral-800 rounded border-l-4 border-white">
+            <h4 class="font-bold text-white">Day 4: Relaunch</h4>
+            <p class="text-sm text-gray-400">
+              Refresh portals, send to your buyer list and reset the clock.
+            </p>
+          </div>
+        </div>
+
+        <!-- Weekly review form -->
+        <div class="card border-t-8 border-t-red-600">
+          <div class="card-header">
+            <h3 class="text-2xl font-bold text-white">Weekly Listing Review</h3>
+          </div>
+          <form id="review-form" class="card-content space-y-5">
+            <div>
+              <label class="block text-sm font-bold text-gray-400 mb-1"
+                >Property Address</label
+              >
+              <input name="prop-address" type="text" />
+            </div>
+            <div>
+              <label class="block text-sm font-bold text-gray-400 mb-1"
+                >Days on Market</label
+              >
+              <input name="dom" type="number" />
+            </div>
+
+            <fieldset class="space-y-2">
+              <legend class="text-sm font-bold text-gray-400 mb-2">
+                Temperature
+              </legend>
+              <div class="flex space-x-4 text-gray-300">
+                <label class="flex items-center">
+                  <input
+                    class="mr-2 accent-red-600"
+                    type="radio"
+                    name="temp"
+                    value="Hot"
+                  />
+                  Hot
+                </label>
+                <label class="flex items-center">
+                  <input
+                    class="mr-2 accent-red-600"
+                    type="radio"
+                    name="temp"
+                    value="Balanced"
+                  />
+                  Balanced
+                </label>
+                <label class="flex items-center">
+                  <input
+                    class="mr-2 accent-red-600"
+                    type="radio"
+                    name="temp"
+                    value="Cool"
+                  />
+                  Cool
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="space-y-2">
+              <legend class="text-sm font-bold text-gray-400 mb-2">
+                Fry Box Test
+              </legend>
+              <div class="space-y-1 text-gray-300">
+                <label class="flex items-center">
+                  <input class="mr-2 accent-red-600" type="checkbox" />
+                  Price is Top 3 value
+                </label>
+                <label class="flex items-center">
+                  <input class="mr-2 accent-red-600" type="checkbox" />
+                  Access is controlled
+                </label>
+                <label class="flex items-center">
+                  <input class="mr-2 accent-red-600" type="checkbox" />
+                  Photos support scarcity
+                </label>
+              </div>
+            </fieldset>
+
+            <div>
+              <label class="block text-sm font-bold text-gray-400 mb-1"
+                >Action Plan</label
+              >
+              <textarea name="action-plan" rows="3"></textarea>
+            </div>
+
+            <div class="flex space-x-4">
+              <button id="reset-form-btn" type="button" class="btn-secondary">
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-20 border-t border-neutral-800 bg-black">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-500 text-sm uppercase tracking-widest">
+        The "Empty Fry Box" Playbook |
+        <span class="text-red-600">Confidential</span>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const mainNav = document.getElementById("main-nav");
+      const mobileNav = document.getElementById("mobile-nav");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const appSections = document.querySelectorAll(".app-section");
+
+      const playbookTabs = document.getElementById("playbook-tabs");
+      const playbookTabContents = document.querySelectorAll(".playbook-tab");
+
+      const tacticFilter = document.getElementById("tactic-filter");
+      const tacticPanes = document.querySelectorAll(".tactic-pane");
+
+      const reviewForm = document.getElementById("review-form");
+      const resetFormBtn = document.getElementById("reset-form-btn");
+
+      const generateBtn = document.getElementById("generate-btn");
+
+      function showSection(targetId) {
+        appSections.forEach(function (section) {
+          section.classList.toggle("hidden", section.id !== targetId);
+        });
+
+        [mainNav, mobileNav].forEach(function (nav) {
+          if (!nav) return;
+          nav.querySelectorAll("a").forEach(function (link) {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("data-target") === targetId
+            );
+          });
+        });
+
+        if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+          mobileMenu.classList.add("hidden");
+        }
+
+        window.scrollTo(0, 0);
+      }
+
+      if (mainNav) {
+        mainNav.addEventListener("click", function (e) {
+          const target = e.target.closest("a[data-target]");
+          if (!target) return;
+          e.preventDefault();
+          showSection(target.getAttribute("data-target"));
+        });
+      }
+
+      if (mobileNav) {
+        mobileNav.addEventListener("click", function (e) {
+          const target = e.target.closest("a[data-target]");
+          if (!target) return;
+          e.preventDefault();
+          showSection(target.getAttribute("data-target"));
+        });
+      }
+
+      if (mobileMenuButton) {
+        mobileMenuButton.addEventListener("click", function () {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+
+      if (playbookTabs) {
+        playbookTabs.addEventListener("click", function (e) {
+          const target = e.target.closest("a[data-target]");
+          if (!target) return;
+          e.preventDefault();
+          const id = target.getAttribute("data-target");
+
+          playbookTabs.querySelectorAll("a").forEach(function (link) {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("data-target") === id
+            );
+          });
+
+          playbookTabContents.forEach(function (tab) {
+            tab.classList.toggle("hidden", tab.id !== id);
+          });
+        });
+      }
+
+      if (tacticFilter) {
+        tacticFilter.addEventListener("click", function (e) {
+          const btn = e.target.closest("button[data-target]");
+          if (!btn) return;
+          e.preventDefault();
+          const id = btn.getAttribute("data-target");
+
+          tacticFilter.querySelectorAll("button").forEach(function (b) {
+            b.classList.toggle(
+              "active",
+              b.getAttribute("data-target") === id
+            );
+          });
+
+          tacticPanes.forEach(function (pane) {
+            pane.classList.toggle("hidden", pane.id !== id);
+          });
+        });
+      }
+
+      if (resetFormBtn && reviewForm) {
+        resetFormBtn.addEventListener("click", function () {
+          reviewForm.reset();
+        });
+      }
+
+      if (generateBtn) {
+        generateBtn.addEventListener("click", function () {
+          const area =
+            document.getElementById("gen-area").value || "Target Area";
+          const status =
+            document.getElementById("gen-status").value ||
+            "No sales data provided.";
+          const p24 = document.getElementById("gen-p24").value || "#";
+          const pp = document.getElementById("gen-pp").value || "#";
+          const temp = document.getElementById("gen-temp").value;
+
+          if (!temp) {
+            alert("Please select a market temperature.");
+            return;
+          }
+
+          const outArea = document.getElementById("out-area");
+          const outStatus = document.getElementById("out-status");
+          const outP24 = document.getElementById("out-p24");
+          const outPP = document.getElementById("out-pp");
+          const outTempBadge = document.getElementById("out-temp-badge");
+          const outPricing = document.getElementById("out-pricing");
+          const outAccess = document.getElementById("out-access");
+          const outPhotos = document.getElementById("out-photos");
+          const outScript = document.getElementById("out-script");
+
+          outArea.textContent = "FOR: " + area.toUpperCase();
+          outStatus.textContent = status;
+          outP24.href = p24;
+          outPP.href = pp;
+
+          let config;
+          if (temp === "hot") {
+            config = {
+              badge: "🔥 HOT SELLER MARKET",
+              cls: "bg-red-100 text-red-800 border-red-300",
+              pricing:
+                "Price just under key search brackets to maximise eyeballs and create multiple offers. Do not test the absolute top of the market.",
+              access:
+                "One or two tight viewing windows (for example Sunday 2–4pm) so buyers see each other and feel the urgency.",
+              photos:
+                "Use 8–12 of your strongest photos. Enough to prove value, not enough to feel like a full tour.",
+              script:
+                "“This pocket is moving fast. If we sharpen the price, we put you where buyers fight for the home instead of ignoring it.”",
+            };
+          } else if (temp === "balanced") {
+            config = {
+              badge: "⚖️ BALANCED MARKET",
+              cls: "bg-blue-100 text-blue-800 border-blue-300",
+              pricing:
+                "You must be clear Top 3 value in your bracket. Use recent solds, not asking prices, as your anchor.",
+              access:
+                "Offer flexible, appointment-based showings with language like ‘Would you like me to hold a slot for you?’",
+              photos:
+                "15–20 flawless photos, better than your competitors. No clutter, no confusion.",
+              script:
+                "“In this price range buyers compare everything. Our job is to make yours the obvious choice on both price and presentation.”",
+            };
+          } else {
+            config = {
+              badge: "❄️ COOL BUYER MARKET",
+              cls: "bg-gray-200 text-gray-800 border-gray-400",
+              pricing:
+                "Be either the best bargain or clearly unique. Anything in the middle will sit.",
+              access:
+                "Appointment only. Protect the seller’s energy and create a sense that every viewing matters.",
+              photos:
+                "Lead with the one rare feature (view, garden, stand size, complex position) and echo it through the images.",
+              script:
+                "“We planned a strong first three weeks. The market has spoken. We can either chase it down slowly, or adjust once and become the must-see home.”",
+            };
+          }
+
+          outTempBadge.textContent = config.badge;
+          outTempBadge.className =
+            "inline-block px-3 py-1 rounded-sm text-sm font-black mb-4 uppercase tracking-wide border " +
+            config.cls;
+          outPricing.textContent = config.pricing;
+          outAccess.textContent = config.access;
+          outPhotos.textContent = config.photos;
+          outScript.textContent = config.script;
+
+          const container = document.getElementById("generated-output");
+          container.classList.remove("hidden");
+          container.scrollIntoView({ behavior: "smooth" });
+        });
+      }
+
+      showSection("home-section");
+    });
+  </script>
 </body>
 </html>
