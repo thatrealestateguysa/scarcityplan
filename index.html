@@ -115,9 +115,9 @@
   >
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
       <div class="flex items-center gap-3">
-        <!-- replace src with your actual logo file path in repo -->
+        <!-- logo now loaded from assets/img -->
         <img
-          src="kw-logo.png"
+          src="assets/img/kw-logo.png"
           alt="KW Explore"
           class="h-7 w-auto object-contain"
         />
@@ -398,6 +398,26 @@
               </li>
             </ol>
           </article>
+        </div>
+
+        <!-- PLAYBOOK DOWNLOAD LIBRARY -->
+        <div class="mt-10 border-t border-neutral-800 pt-6">
+          <h3 class="section-title text-xs text-gray-400 mb-2">
+            DOWNLOADABLE <span class="kw-title-red">PLAYBOOKS</span>
+          </h3>
+          <p class="mb-5 text-sm text-gray-300">
+            One-page PDFs you can use in listing appointments, training, or
+            price conversations. New playbooks (like the
+            <span class="kw-title-red">Colorless Wall</span> series) can be added
+            here without changing the rest of the app.
+          </p>
+
+          <div
+            id="playbook-downloads"
+            class="grid gap-4 md:grid-cols-2 xl:grid-cols-3"
+          >
+            <!-- Cards are injected by JS -->
+          </div>
         </div>
       </section>
 
@@ -1173,22 +1193,22 @@
       // Helper for market classification
       function classifyMarket(dom) {
         if (!dom || dom <= 0 || isNaN(dom)) return "Balanced Market";
-        if (dom <= 60) return "Seller\u2019s Market";
+        if (dom <= 60) return "Seller’s Market";
         if (dom <= 90) return "Balanced Market";
-        return "Buyer\u2019s Market";
+        return "Buyer’s Market";
       }
 
       function badgeStyles(type) {
         if (type.startsWith("Seller")) {
           return {
-            text: "Seller\u2019s Market",
+            text: "Seller’s Market",
             class:
               "border border-kw-red/70 bg-kw-red/15 text-[0.7rem] text-kw-red",
           };
         }
         if (type.startsWith("Buyer")) {
           return {
-            text: "Buyer\u2019s Market",
+            text: "Buyer’s Market",
             class:
               "border border-sky-500/60 bg-sky-500/10 text-[0.7rem] text-sky-300",
           };
@@ -1349,6 +1369,65 @@
           const out = document.getElementById("strategy-output");
           out.classList.remove("hidden");
           out.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      }
+
+      // PLAYBOOK DOWNLOAD LIBRARY
+      const playbookDownloadsContainer = document.getElementById("playbook-downloads");
+
+      if (playbookDownloadsContainer) {
+        const playbooks = [
+          {
+            id: "scarcity-playbook",
+            title: "Empty Fry Box Scarcity Playbook",
+            tag: "Market of the Moment",
+            description:
+              "Deep dive on the Empty Fry Box principle, DOM, and pricing frames that power The FOMO Machine.",
+            file: "assets/playbooks/empty-fry-box-scarcity-playbook.pdf"
+          },
+          {
+            id: "colorless-wall-playbook",
+            title: "Colorless Wall Playbook",
+            tag: "Listing Prep",
+            description:
+              "How to turn “blank” or low-character properties into high-response, FOMO-driven listings.",
+            file: "assets/playbooks/colorless-wall-playbook.pdf" // placeholder; add when ready
+          }
+          // Add more playbooks here as you create them
+        ];
+
+        playbooks.forEach((pb) => {
+          const card = document.createElement("article");
+          card.className =
+            "soft-panel rounded-3xl p-5 flex flex-col justify-between";
+
+          card.innerHTML = `
+            <div>
+              <p class="chip-red mb-3 inline-block px-3 py-1">
+                ${pb.tag}
+              </p>
+              <h4 class="mb-2 text-base font-bold text-white">
+                ${pb.title}
+              </h4>
+              <p class="text-sm text-gray-300">
+                ${pb.description}
+              </p>
+            </div>
+            <div class="mt-4 flex items-center justify-between text-xs">
+              <span class="text-gray-500 uppercase tracking-[0.16em]">
+                PDF • Playbook
+              </span>
+              <a
+                href="${pb.file}"
+                download
+                class="inline-flex items-center gap-1 rounded-full border border-neutral-600 bg-black px-3 py-1 font-semibold uppercase tracking-[0.16em] text-[0.7rem] text-gray-100 hover:border-kw-red hover:text-white"
+              >
+                ⬇ Download
+              </a>
+            </div>
+          `;
+
+          playbookDownloadsContainer.appendChild(card);
         });
       }
     });
